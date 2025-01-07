@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Message</title>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d35d6e;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 6px rgba(211, 93, 110, 0.6);
+            opacity: 0.9;
+            animation: bounceIn 1s ease;
+        }
+
+        #container {
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            padding: 15px;
+        }
+
+        #passwordPrompt {
+            margin-top: 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border: 2px solid #333;
+            border-radius: 25px;
+            outline: none;
+            background-color: #444;
+            color: #fff;
+            margin-bottom: 15px;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            letter-spacing: 1px;
+            box-sizing: border-box;
+        }
+
+        input[type="password"]:focus {
+            box-shadow: 0 0 15px rgba(211, 93, 110, 0.9);
+            border-color: #d35d6e;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #d35d6e, #ff6f91);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        #errorMessage {
+            color: #ff6f91;
+            margin-top: 10px;
+            font-size: 1rem;
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        #hiddenMessage {
+            display: none;
+            margin-top: 10px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f8f8, #fff);
+            border: 3px dashed #f7b5c6;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            text-align: left;
+            color: #333;
+            animation: slideIn 1s ease forwards;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            overflow-y: auto;
+            max-width: auto; /* ปรับให้กว้างตามข้อความ */
+            max-height: auto; /* ควบคุมความสูงสำหรับข้อความยาว */
+        }
+        
+        #typedMessage {
+            display: none;
+            font-size: 1rem;
+            color: #333;
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            animation: fadeIn 1s ease;
+        }
+
+        #nextButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #6fd3c4, #9ee1d9);
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #nextButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            input[type="password"],
+            button {
+                font-size: 1.1rem;
+            }
+
+            #container {
+                padding: 10px;
+                max-width: 90%;
+            }
+
+            #hiddenMessage {
+                max-width: 90%;
+                padding: 20px;
+            }
+
+            input[type="password"] {
+                max-width: 80%;
+            }
+        }
+
+        #hiddenMessage {
+            display: none;
+            margin-top: 10px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f8f8, #fff);
+            border: 3px dashed #f7b5c6;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            text-align: left;
+            color: #333;
+            animation: slideIn 1s ease forwards;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            width: 95%; /* เพิ่มความกว้างเป็น 95% ของหน้าจอ */
+            max-width: 600px; /* จำกัดความกว้างสูงสุด */
+            max-height: 70vh; /* เพิ่มความสูงสูงสุดเป็น 70% ของหน้าจอ */
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: #d35d6e transparent;
+        }
+        
+        #hiddenMessage::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        #hiddenMessage::-webkit-scrollbar-thumb {
+            background: #d35d6e;
+            border-radius: 5px;
+        }
+        
+        #hiddenMessage::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="messageTitle">Enter the secret code to reveal the message.</h1>
+        <div id="passwordPrompt">
+            <input type="password" id="passwordInput" placeholder="••••••">
+            <button id="submitPassword">Submit</button>
+        </div>
+        <p id="errorMessage">❌ Incorrect password. Try again.</p>
+        <div id="hiddenMessage">
+            <h2 style="text-align: center; color: #ff6f91;">Classified Message 📡</h2>
+            <p id="typedMessage"></p>
+            <a id="nextButton" href="end.html">Proceed</a>
+        </div>
+    </div>
+
+    <script>
+        let isProcessing = false;
+
+        document.getElementById('submitPassword').addEventListener('click', () => {
+            if (isProcessing) return;
+            isProcessing = true;
+
+            const password = document.getElementById('passwordInput').value;
+            const hiddenMessage = document.getElementById('hiddenMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const passwordPrompt = document.getElementById('passwordPrompt');
+            const messageTitle = document.getElementById('messageTitle');
+            const typedMessage = document.getElementById('typedMessage');
+
+            if (password === '080149') {
+                messageTitle.style.display = 'none';
+                hiddenMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                passwordPrompt.style.display = 'none';
+
+                const fullMessage = `
+สุขสันต์วันเกิดนะที่รักของเค้า 🌟  
+
+วันนี้เป็นวันสำคัญที่สุดอีกวันหนึ่ง เพราะมันคือวันที่คนพิเศษอย่างเธอได้เกิดมา เค้าขอบคุณโชคชะตาที่ทำให้เราได้เจอกัน และขอบคุณเธอที่ยอมเข้ามาเป็นส่วนหนึ่งในชีวิตของเค้า  
+
+เธอรู้ไหมว่าเธอเป็นเหมือนแสงสว่างในทุกๆ วันของเค้า แค่มีเธออยู่ เค้าก็ไม่ต้องการอะไรที่ยิ่งใหญ่ไปกว่านี้แล้ว เธอเป็นคนที่เค้าเชื่อใจ เป็นคนที่เค้ารู้สึกปลอดภัยเมื่ออยู่ใกล้ และเป็นคนที่ทำให้เค้ารู้ว่า “ความรักที่แท้จริง” เป็นยังไง  
+
+เค้าขอให้ปีนี้เป็นปีที่ดีสำหรับเธอ ขอให้เธอมีความสุขในทุกๆ เรื่อง ไม่ว่าเป้าหมายหรือความฝันอะไรของเธอ เค้าขอเป็นคนหนึ่งที่อยู่เคียงข้าง ช่วยสนับสนุน และให้กำลังใจเธอในทุกๆ ก้าว  
+
+ชีวิตของเราอาจไม่ได้สมบูรณ์แบบไปทุกอย่าง อาจมีวันที่เหนื่อย วันที่ล้ม แต่เค้าสัญญาว่าเค้าจะอยู่ข้างเธอเสมอ จะไม่ปล่อยมือเธอ ไม่ว่าอะไรจะเกิดขึ้น  
+
+ขอบคุณที่เธอเป็นเธอ ขอบคุณที่รักเค้าในแบบที่เค้าเป็น ขอบคุณที่เกิดมาให้เค้ารักนะ  เค้ารักเธอมากๆๆนะ 
+
+ปล. ไม่รู้ว่าเธอจะชอบของขวัญที่เค้าให้หรือป่าว  เธอเป็นผู้หญิงคนแรกนะที่เค้าให้ของขวัญวันเกิด เค้าอยากให้ของขวัญชิ้นนี้เป็นเครื่องแทนใจตอนที่เราไม่ได้อยู่ด้วยกัน รักและคิดถึงเสมอ
+
+จาก
+TopZ.
+
+
+`;
+
+
+                let index = 0;
+                typedMessage.style.display = 'block';
+                const typeInterval = setInterval(() => {
+                    if (index < fullMessage.length) {
+                        typedMessage.textContent += fullMessage.charAt(index);
+                        index++;
+                    } else {
+                        clearInterval(typeInterval);
+                        document.getElementById('nextButton').style.display = 'block';
+                    }
+                }, 50);
+
+            } else {
+                errorMessage.style.display = 'block';
+                hiddenMessage.style.display = 'none';
+                isProcessing = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

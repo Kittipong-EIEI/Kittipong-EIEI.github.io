@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <script src="https://kit.fontawesome.com/6f0f83005a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="sidebar-header">
+                <h2>Music</h2>
+            </div>
+
+            <!-- Song List -->
+            <div class="song-list">
+                <div class="song-item" data-src="แค่นี้...พอ.mp3">
+                    <img src="1.jpg" alt="Album Cover" class="album-cover">
+                    <div class="song-details">
+                        <p class="song-name">แค่นี้...พอ</p>
+                        <p class="song-artist">The Parkinson</p>
+                    </div>
+                </div>
+                <div class="song-item" data-src="Deeper Than .mp3">
+                    <img src="8.jpg" alt="Album Cover" class="album-cover">
+                    <div class="song-details">
+                        <p class="song-name">Deeper Than It Seems</p>
+                        <p class="song-artist">Jace June</p>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Audio Controls -->
+            <div class="audio-controls">
+                <div class="time-info">
+                    <span class="current-time">0:00</span> / <span class="duration">0:00</span>
+                </div>
+                <input type="range" class="progress-bar" value="0" max="100">
+                <div>
+                    <button class="prev-btn"><i class="fas fa-backward"></i></button>
+                    <button class="play-pause-btn"><i class="fas fa-play"></i></button>
+                    <button class="next-btn"><i class="fas fa-forward"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Similar Artists</h3>
+            </div>
+            <div class="similar-artist">
+                <a href="https://www.instagram.com/mademydaynicha" class="artist-link">
+                    <img src="11.jpg" alt="Onnucha">
+                    <div class="artist-info">
+                        <p class="artist-name">Onnicha</p>
+                        <p class="artist-type">Nuey</p>
+                    </div>
+                </a>
+            </div>
+            <div class="similar-artist">
+                <a href="https://www.instagram.com/kt_kittipongg/" class="artist-link">
+                    <img src="10.jpg" alt="Kittipong">
+                    <div class="artist-info">
+                        <p class="artist-name">Kittipong</p>
+                        <p class="artist-type">TopZ</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Next Button -->
+            <div class="next-link-btn">
+                <a href="text.html" class="next-btn-bottom">
+                    <span>Next</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const songItems = document.querySelectorAll('.song-item');
+            const audioPlayer = new Audio();
+            const playPauseBtn = document.querySelector('.play-pause-btn');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const progressBar = document.querySelector('.progress-bar');
+            const currentTimeDisplay = document.querySelector('.current-time');
+            const durationDisplay = document.querySelector('.duration');
+            let currentSongIndex = -1;
+            const songs = Array.from(songItems);
+
+            function updateSongInfo(index) {
+                const song = songs[index];
+                const songName = song.querySelector('.song-name').textContent;
+                audioPlayer.src = song.getAttribute('data-src');
+                audioPlayer.play();
+                updatePlayPauseButton();
+            }
+
+            playPauseBtn.addEventListener('click', () => {
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                } else {
+                    audioPlayer.pause();
+                }
+                updatePlayPauseButton();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                updateSongInfo(currentSongIndex);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentSongIndex = (currentSongIndex + 1) % songs.length;
+                updateSongInfo(currentSongIndex);
+            });
+
+            function updatePlayPauseButton() {
+                if (audioPlayer.paused) {
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                } else {
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+            }
+
+            audioPlayer.addEventListener('timeupdate', () => {
+                const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                progressBar.value = progress;
+                currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+                durationDisplay.textContent = formatTime(audioPlayer.duration);
+            });
+
+            progressBar.addEventListener('input', () => {
+                const newTime = (progressBar.value / 100) * audioPlayer.duration;
+                audioPlayer.currentTime = newTime;
+            });
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            }
+
+            songItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    currentSongIndex = index;
+                    updateSongInfo(currentSongIndex);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

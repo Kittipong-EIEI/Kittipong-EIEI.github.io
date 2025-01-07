@@ -1,0 +1,592 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #ffffff, #FADBD8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: fadeInSlide 1s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+/* Main Content */
+.main-content {
+    flex: 3;
+    padding: 20px;
+    background: #fff;
+}
+
+.song-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: #fdfdfd;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.song-item:hover {
+    background-color: #f4e1f7;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.song-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 15px;
+    object-fit: cover;
+    display: block;
+}
+
+.song-item-content {
+    flex: 1;
+    text-align: left;
+}
+
+.song-number {
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.song-name {
+    font-weight: bold;
+}
+
+.song-artist {
+    color: #888;
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.view-all {
+    font-size: 14px;
+    color: #ff5f5f;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+    color: #ec407a;
+}
+
+
+
+.artist-info {
+    flex: 1;
+}
+
+.artist-name {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.artist-type {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+}
+
+.fas.fa-ellipsis-h {
+    font-size: 16px;
+    color: #888;
+    cursor: pointer;
+}
+
+/* Audio Controls */
+.audio-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.audio-controls input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.audio-controls button {
+    font-size: 16px;
+    background: linear-gradient(120deg, #8E24AA, #D81B60);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.audio-controls button:hover {
+    background: linear-gradient(120deg, #D81B60, #8E24AA);
+    transform: scale(1.05);
+}
+
+/* Countdown */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#birthday-title {
+    font-size: 3rem;
+    color: #D76A7E;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    animation: zoomIn 1s ease;
+}
+
+/* Slider */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.nav-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Next Button */
+.next-link-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.next-btn-bottom {
+    font-size: 14px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: #f48fb1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.next-btn-bottom:hover {
+    background-color: #ec407a;
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .container {
+        max-width: 95%;
+        padding: 10px;
+        box-shadow: none;
+    }
+
+    .song-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .song-item img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    .song-name, .song-artist {
+        font-size: 14px;
+    }
+}
+
+.similar-artist {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.similar-artist:hover {
+    background-color: #f4e1f7; /* สีอ่อนเพื่อแสดงการ hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* เพิ่มเงา */
+}
+
+.similar-artist img {
+    width: 50px; /* เพิ่มขนาดให้ดูเด่นขึ้น */
+    height: 50px;
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    margin-right: 15px;
+    object-fit: cover;
+    display: block;
+    border: 2px solid #d76a7e; /* เพิ่มกรอบสีเพื่อความโดดเด่น */
+    transition: transform 0.3s; /* เพิ่มเอฟเฟกต์ */
+}
+
+.similar-artist img:hover {
+    transform: scale(1.1); /* ขยายเล็กน้อยเมื่อ hover */
+}
+
+.artist-info {
+    flex: 1; /* เพื่อให้ข้อความขยายเต็มที่ */
+}
+
+.artist-name {
+    margin: 0;
+    font-size: 16px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+    font-weight: bold;
+    color: #333;
+}
+
+.artist-type {
+    margin: 0;
+    font-size: 14px;
+    color: #888;
+}
+
+
+@media (max-width: 768px) {
+    .similar-artist {
+        flex-direction: column; /* จัดเรียงเป็นแนวตั้ง */
+        align-items: center; /* จัดรูปให้อยู่ตรงกลาง */
+        text-align: center; /* จัดข้อความให้อยู่กลาง */
+    }
+
+    .similar-artist img {
+        width: 60px; /* ปรับขนาดรูปภาพเล็กลงสำหรับมือถือ */
+        height: 60px;
+        margin-bottom: 10px; /* เพิ่มช่องว่างระหว่างรูปกับข้อความ */
+    }
+
+    .artist-name {
+        font-size: 14px; /* ลดขนาดตัวอักษร */
+    }
+
+    .artist-type {
+        font-size: 12px; /* ลดขนาดตัวอักษรเพิ่มเติม */
+    }
+}
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main-content {
+    flex: 2;
+    padding: 20px;
+}
+
+.sidebar {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+}
+
+.sidebar-header,
+.sidebar .similar-artist {
+    margin-bottom: 20px;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #555;
+}
+
+.song-list {
+    margin-top: 20px;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.album-cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.song-details {
+    flex: 1;
+}
+
+.song-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+
+.song-artist {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+}
+
+.audio-controls {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.audio-controls .time-info {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.audio-controls input.progress-bar {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.audio-controls button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #555;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.similar-artist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.similar-artist img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.artist-info {
+    flex: 1;
+}
+
+.artist-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.artist-type {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+}
+
+.next-link-btn {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.next-btn-bottom {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+}
+
+.next-btn-bottom i {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        order: 1;
+        margin-top: 20px;
+    }
+
+    .song-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .similar-artist {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .similar-artist img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+
+.next-btn-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #f8bbd0;
+    /* สีชมพูมินิมอล */
+    color: #ffffff;
+    /* สีตัวอักษรขาว */
+    font-size: 16px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    /* จัดให้อยู่ตรงกลาง */
+    width: 100%;
+    /* กำหนดความกว้างให้สมดุลกับบล็อก */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.next-btn-bottom i {
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.next-btn-bottom:hover {
+    background-color: #f48fb1;
+    /* สีชมพูเข้มขึ้นเมื่อ hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* เพิ่มมิติ */
+}
+
+
+.artist-link {
+    text-decoration: none;
+}
+
+/* Optionally, you can add hover effects to make the link stand out */
+.artist-link:hover .artist-name,
+.artist-link:hover .artist-type {
+    color: #007BFF;
+    /* Change to any color you prefer */
+}

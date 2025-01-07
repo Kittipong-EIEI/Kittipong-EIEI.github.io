@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Style Video Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .header img {
+            width: 100px;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .header nav a:hover {
+            color: #e50914;
+        }
+
+        .hero {
+            height: 90vh;
+            background-image: url('https://source.unsplash.com/1600x900/?movie');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            padding: 12px 25px;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #f40612;
+        }
+
+        .movies {
+            padding: 50px 20px;
+        }
+
+        .movies h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .movie {
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .movie img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .movie:hover {
+            transform: scale(1.05);
+        }
+
+        .video-section {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .video-section.active {
+            display: flex;
+        }
+
+        .video-section video {
+            width: 100%;
+            max-width: 700px;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        .video-section .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .video-section .close-btn:hover {
+            background-color: #f40612;
+        }
+
+        .video-section .next-btn {
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .video-section .next-btn.active {
+            display: block;
+        }
+
+        .video-section .next-btn:hover {
+            background-color: #f40612;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #141414;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero button {
+                font-size: 0.9rem;
+            }
+
+            .header nav a {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .movies h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="112233.jpg" alt="Netflix Logo">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">TV Shows</a>
+            <a href="#">Movies</a>
+            <a href="#">My List</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>It's Someone's Special Day!</h1>
+        <p>"Happy 19th birthday, my love! Wishing you lots of happiness this year."</p>
+        <button onclick="showVideo()">Watch Now</button>
+    </section>
+
+    <section class="movies">
+        <h2>Popular on Nuyeflix</h2>
+        <div class="movie-grid">
+            <div class="movie">
+                <img src="7.jpg" alt="Movie Poster">
+            </div>
+            <div class="movie">
+                <img src="1.jpg" alt="Movie Poster">
+            </div>
+            <div class="movie">
+                <img src="14.jpg" alt="Movie Poster">
+            </div>
+            <div class="movie">
+                <img src="11.jpg" alt="Movie Poster">
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section" id="videoSection">
+        <button class="close-btn" onclick="hideVideo()">X</button>
+        <video id="mainVideo" controls>
+            <source src="xxx.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="next-btn" id="nextButton" onclick="nextVideo()">Next</button>
+    </section>
+
+    
+
+    <script>
+        function showVideo() {
+            document.getElementById('videoSection').classList.add('active');
+            const video = document.getElementById('mainVideo');
+            const nextButton = document.getElementById('nextButton');
+
+            video.addEventListener('ended', () => {
+                nextButton.classList.add('active');
+            });
+        }
+
+        function hideVideo() {
+            document.getElementById('videoSection').classList.remove('active');
+            const nextButton = document.getElementById('nextButton');
+            nextButton.classList.remove('active');
+        }
+
+        function nextVideo() {
+            alert('Next video functionality goes here!');
+        }
+
+        function nextVideo() {
+            window.location.href = "music.html"; // เปลี่ยน URL เป็นลิงก์ที่ต้องการ
+        }
+        
+        
+    </script>
+</body>
+</html>
