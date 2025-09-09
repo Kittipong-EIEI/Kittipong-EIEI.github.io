@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Cafe - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <div class="gaming-bg"></div>
+
+    <div class="container">
+        <!-- Login Form -->
+        <div class="desktop-window" id="loginWindow">
+            <div class="desktop-header">
+                <div class="desktop-title">Desktop - Login</div>
+                <div class="window-controls">
+                    <div class="control-btn close"></div>
+                    <div class="control-btn minimize"></div>
+                    <div class="control-btn maximize"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h2 style="color: #fff; text-align: center; margin-bottom: 2rem;">Login</h2>
+
+                <div id="loginAlert"></div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Username or Email</label>
+                        <input type="text" id="loginUser" name="username" placeholder="Enter your username or email"
+                            >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPass" name="password" placeholder="Enter your password"
+                            >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+
+                    <div class="divider">
+                        <span>Or</span>
+                    </div>
+
+                    <button type="button" class="btn btn-google" onclick="googleLogin()">
+                        Sign in with Google
+                    </button>
+
+                    <div class="switch-form">
+                        Don't have an account? <a href="register.html">Register here</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // แสดงข้อความ Alert
+    function showAlert(type, message, containerId) {
+        const alertContainer = document.getElementById(containerId);
+        alertContainer.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+        setTimeout(() => {
+            alertContainer.innerHTML = '';
+        }, 3000);
+    }
+
+    // ฟอร์ม Login
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+
+        // เปลี่ยนปุ่มเป็นสถานะโหลด
+        submitBtn.innerHTML = 'กำลังเข้าสู่ระบบ...';
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        // จำลองว่า login สำเร็จ
+        setTimeout(() => {
+            showAlert('success', 'เข้าสู่ระบบสำเร็จ! กำลังเปลี่ยนหน้า...', 'loginAlert');
+
+            // 👉 เปลี่ยนเป็นหน้าที่อยากให้ไปต่อ
+            window.location.href = "index.html";
+        }, 1500);
+
+        // รีเซ็ตปุ่มหลังจาก 3 วิ (กันเผื่อ)
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        }, 3000);
+    });
+
+    // ปุ่ม Google (ยังไม่ทำจริง แค่โชว์ error)
+    function googleLogin() {
+        showAlert('error', 'Google login ยังไม่เปิดใช้งาน (Prototype)', 'loginAlert');
+    }
+
+    // เอฟเฟกต์ขยับหน้าต่างตามเมาส์
+    document.addEventListener('mousemove', function(e) {
+        const windowBox = document.querySelector('.desktop-window');
+        const rect = windowBox.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        windowBox.style.transform = `translate(${x * 0.01}px, ${y * 0.01}px)`;
+    });
+</script>
+
+</body>
+
+</html>

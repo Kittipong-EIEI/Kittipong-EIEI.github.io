@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ - กินอะไรดี</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="profile-avatar" onclick="changeAvatar()">👤</div>
+            <div class="profile-name">นศ cs ท่านหนึ่ง</div>
+            <div class="profile-subtitle">นักกินมือโปร • สมาชิกมา 3 เดือน</div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="profile-content">
+            
+            <!-- Stats Overview -->
+            <div class="stats-overview">
+                <div class="stats-title">
+                    <span>📊</span>
+                    สถิติส่วนตัวสัปดาห์นี้
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">47</div>
+                        <div class="stat-label">เมนูที่ทำแล้ว</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12,580</div>
+                        <div class="stat-label">แคลอรี่รวม</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">23</div>
+                        <div class="stat-label">วัตถุดิบใช้ไป</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8.5</div>
+                        <div class="stat-label">คะแนนเฉลี่ย</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekly Progress -->
+            <div class="section">
+                <div class="section-title">
+                    <span>🎯</span>
+                    เป้าหมายสัปดาห์นี้
+                </div>
+                <div class="weekly-progress">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <div class="progress-label">🔥 แคลอรี่วันนี้</div>
+                            <div class="progress-value">1,350 / 1,800</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill calories-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <div class="progress-label">💪 โปรตีน</div>
+                            <div class="progress-value">65g / 80g</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill protein-fill" style="width: 81%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <div class="progress-label">💧 ดื่มน้ำ</div>
+                            <div class="progress-value">1.8 / 2.5 ลิตร</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill water-fill" style="width: 72%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <div class="progress-label">🏃‍♂️ ออกกำลังกาย</div>
+                            <div class="progress-value">4 / 5 วัน</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill exercise-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorite Foods -->
+            <div class="section">
+                <div class="section-title">
+                    <span>❤️</span>
+                    อาหารโปรด
+                </div>
+                <div class="favorite-foods">
+                    <div class="food-grid">
+                        <div class="food-item" onclick="showFoodDetail('ผัดกะเพรา')">
+                            <span class="food-emoji">🍛</span>
+                            <div class="food-name">ผัดกะเพรา</div>
+                            <div class="food-count">ทำแล้ว 15 ครั้ง</div>
+                        </div>
+                        <div class="food-item" onclick="showFoodDetail('ต้มยำกุ้ง')">
+                            <span class="food-emoji">🍲</span>
+                            <div class="food-name">ต้มยำกุ้ง</div>
+                            <div class="food-count">ทำแล้ว 12 ครั้ง</div>
+                        </div>
+                        <div class="food-item" onclick="showFoodDetail('ข้าวผัด')">
+                            <span class="food-emoji">🍚</span>
+                            <div class="food-name">ข้าวผัดไข่</div>
+                            <div class="food-count">ทำแล้ว 10 ครั้ง</div>
+                        </div>
+                        <div class="food-item" onclick="showFoodDetail('ไข่เจียว')">
+                            <span class="food-emoji">🍳</span>
+                            <div class="food-name">ไข่เจียว</div>
+                            <div class="food-count">ทำแล้ว 8 ครั้ง</div>
+                        </div>
+                        <div class="food-item" onclick="showFoodDetail('ผัดไทย')">
+                            <span class="food-emoji">🍜</span>
+                            <div class="food-name">ผัดไทย</div>
+                            <div class="food-count">ทำแล้ว 6 ครั้ง</div>
+                        </div>
+                        <div class="food-item" onclick="showFoodDetail('สมูทตี้')">
+                            <span class="food-emoji">🥤</span>
+                            <div class="food-name">สมูทตี้</div>
+                            <div class="food-count">ทำแล้ว 5 ครั้ง</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="section">
+                <div class="section-title">
+                    <span>🏆</span>
+                    ความสำเร็จ
+                </div>
+                <div class="achievements">
+                    <div class="achievement-grid">
+                        <div class="achievement-item">
+                            <span class="achievement-icon">🔥</span>
+                            <div class="achievement-name">นักทำครัวมือใหม่</div>
+                            <div class="achievement-desc">ทำอาหาร 10 เมนู</div>
+                        </div>
+                        <div class="achievement-item">
+                            <span class="achievement-icon">⭐</span>
+                            <div class="achievement-name">เชฟระดับเทพ</div>
+                            <div class="achievement-desc">คะแนนเฉลี่ย > 8.0</div>
+                        </div>
+                        <div class="achievement-item">
+                            <span class="achievement-icon">🥗</span>
+                            <div class="achievement-name">คนรักสุขภาพ</div>
+                            <div class="achievement-desc">กิน 100 มื้อสุขภาพ</div>
+                        </div>
+                        <div class="achievement-item locked">
+                            <span class="achievement-icon">👑</span>
+                            <div class="achievement-name">มาสเตอร์เชฟ</div>
+                            <div class="achievement-desc">ทำอาหาร 100 เมนู</div>
+                        </div>
+                        <div class="achievement-item">
+                            <span class="achievement-icon">💪</span>
+                            <div class="achievement-name">นักวางแผน</div>
+                            <div class="achievement-desc">วางแผนมื้ออาหาร 30 วัน</div>
+                        </div>
+                        <div class="achievement-item locked">
+                            <span class="achievement-icon">🌟</span>
+                            <div class="achievement-name">ผู้เชี่ยวชาญ</div>
+                            <div class="achievement-desc">ใช้วัตถุดิบ 200 ชนิด</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Insights -->
+            <div class="section">
+                <div class="section-title">
+                    <span>💡</span>
+                    ข้อมูลเชิงลึกเพื่อสุขภาพ
+                </div>
+                <div class="health-insights">
+                    <div class="insight-item">
+                        <span class="insight-icon">📈</span>
+                        <span class="insight-text">คุณกินผักเพิ่มขึ้น 20% เมื่อเทียบกับเดือนที่แล้ว ดีมากเลย!</span>
+                    </div>
+                    <div class="insight-item">
+                        <span class="insight-icon">⚡</span>
+                        <span class="insight-text">ระดับพลังงานจากอาหารของคุณเหมาะสมสำหรับกิจกรรมประจำวัน</span>
+                    </div>
+                    <div class="insight-item">
+                        <span class="insight-icon">🧪</span>
+                        <span class="insight-text">ขาดวิตามิน C เล็กน้อย ลองเพิ่มผลไม้เปรี้ยวๆ ในมื้อเย็นดูนะ</span>
+                    </div>
+                    <div class="insight-item">
+                        <span class="insight-icon">💧</span>
+                        <span class="insight-text">การดื่มน้ำของคุณดีขึ้นแล้ว แต่ยังขาดอีก 0.7 ลิตรต่อวัน</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences -->
+            <div class="section">
+                <div class="section-title">
+                    <span>⚙️</span>
+                    การตั้งค่า
+                </div>
+                <div class="preferences">
+                    <div class="pref-item">
+                        <div class="pref-label">
+                            <span>🔔</span>
+                            แจ้งเตือนเวลาทำอาหาร
+                        </div>
+                        <div class="toggle-switch active" onclick="togglePreference(this)">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    <div class="pref-item">
+                        <div class="pref-label">
+                            <span>🌶️</span>
+                            ชอบอาหารเผ็ด
+                        </div>
+                        <div class="toggle-switch active" onclick="togglePreference(this)">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    <div class="pref-item">
+                        <div class="pref-label">
+                            <span>🥗</span>
+                            เน้นอาหารสุขภาพ
+                        </div>
+                        <div class="toggle-switch active" onclick="togglePreference(this)">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    <div class="pref-item">
+                        <div class="pref-label">
+                            <span>⚡</span>
+                            ชอบทำอาหารเร็ว
+                        </div>
+                        <div class="toggle-switch" onclick="togglePreference(this)">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                    <div class="pref-item">
+                        <div class="pref-label">
+                            <span>🌱</span>
+                            มังสวิรัติ
+                        </div>
+                        <div class="toggle-switch" onclick="togglePreference(this)">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="nav-item" onclick="switchTab('home')">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">หน้าหลัก</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('ingredients')">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">วัตถุดิบ</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('recipes')">
+                <span class="nav-icon">🍽</span>
+                <span class="nav-text">เมนู</span>
+            </button>
+            <button class="nav-item active" onclick="switchTab('profile')">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">โปรไฟล์</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Profile data
+        const profileStats = {
+            recipesCooked: 47,
+            totalCalories: 12580,
+            ingredientsUsed: 23,
+            averageRating: 8.5,
+            favoriteCount: {
+                'ผัดกะเพรา': 15,
+                'ต้มยำกุ้ง': 12,
+                'ข้าวผัด': 10,
+                'ไข่เจียว': 8,
+                'ผัดไทย': 6,
+                'สมูทตี้': 5
+            }
+        };
+
+        const dailyGoals = {
+            calories: { current: 1350, target: 1800 },
+            protein: { current: 65, target: 80 },
+            water: { current: 1.8, target: 2.5 },
+            exercise: { current: 4, target: 5 }
+        };
+
+        function changeAvatar() {
+            const avatars = ['👤', '👨‍🍳', '🧑‍🍳', '👩‍🍳', '😊', '🤓', '😎', '🥰'];
+            const currentAvatar = document.querySelector('.profile-avatar');
+            const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+            
+            currentAvatar.style.transform = 'scale(0)';
+            setTimeout(() => {
+                currentAvatar.textContent = randomAvatar;
+                currentAvatar.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    currentAvatar.style.transform = 'scale(1)';
+                }, 200);
+            }, 150);
+
+            // Show success message
+            setTimeout(() => {
+                alert('✅ เปลี่ยนรูปโปรไฟล์เรียบร้อยแล้ว!');
+            }, 500);
+        }
+
+        function showFoodDetail(foodName) {
+            const count = profileStats.favoriteCount[foodName] || 0;
+            const recipes = {
+                'ผัดกะเพรา': { calories: 350, rating: 4.8, difficulty: 'ง่าย' },
+                'ต้มยำกุ้ง': { calories: 180, rating: 4.9, difficulty: 'ปานกลาง' },
+                'ข้าวผัด': { calories: 420, rating: 4.6, difficulty: 'ง่าย' },
+                'ไข่เจียว': { calories: 180, rating: 4.5, difficulty: 'ง่าย' },
+                'ผัดไทย': { calories: 380, rating: 4.7, difficulty: 'ปานกลาง' },
+                'สมูทตี้': { calories: 180, rating: 4.6, difficulty: 'ง่าย' }
+            };
+
+            const recipe = recipes[foodName];
+            if (recipe) {
+                alert(`❤️ ${foodName}\n\n📊 สถิติของคุณ:\n• ทำแล้ว ${count} ครั้ง\n• แคลอรี่เฉลี่ย ${recipe.calories} แคล\n• คะแนนเฉลี่ย ⭐ ${recipe.rating}\n• ระดับความยาก: ${recipe.difficulty}\n\n💡 เป็นหนึ่งในเมนูโปรดของคุณเลย!`);
+            }
+        }
+
+        function togglePreference(element) {
+            element.classList.toggle('active');
+            
+            // Get preference name
+            const prefName = element.parentElement.querySelector('.pref-label').textContent.trim();
+            const isActive = element.classList.contains('active');
+            
+            // Show feedback
+            setTimeout(() => {
+                const status = isActive ? 'เปิด' : 'ปิด';
+                const icon = isActive ? '✅' : '❌';
+                alert(`${icon} ${status} "${prefName}" เรียบร้อยแล้ว\n\nระบบจะใช้ข้อมูลนี้ในการแนะนำเมนูที่เหมาะกับคุณ`);
+            }, 100);
+        }
+
+        function switchTab(tab) {
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active class to clicked item
+            event.currentTarget.classList.add('active');
+
+            switch (tab) {
+                case 'home':
+                    window.location.href = 'home.html';
+                    break;
+                case 'ingredients':
+                    window.location.href = 'food.html';
+                    break;
+                case 'recipes':
+                    window.location.href = 'menu.html';
+                    break;
+                case 'profile':
+                    // Already on profile page
+                    break;
+            }
+        }
+
+        // Animate progress bars on load
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            progressBars.forEach((bar, index) => {
+                const finalWidth = bar.style.width;
+                bar.style.width = '0%';
+                
+                setTimeout(() => {
+                    bar.style.width = finalWidth;
+                }, 500 + (index * 200));
+            });
+        }
+
+        // Update stats with animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const finalValues = [
+                profileStats.recipesCooked,
+                profileStats.totalCalories,
+                profileStats.ingredientsUsed,
+                profileStats.averageRating
+            ];
+
+            statNumbers.forEach((stat, index) => {
+                const finalValue = finalValues[index];
+                let currentValue = 0;
+                const increment = finalValue / 50; // 50 steps animation
+                
+                const interval = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        stat.textContent = finalValue.toLocaleString();
+                        clearInterval(interval);
+                    } else {
+                        if (index === 3) { // Rating with decimal
+                            stat.textContent = currentValue.toFixed(1);
+                        } else {
+                            stat.textContent = Math.floor(currentValue).toLocaleString();
+                        }
+                    }
+                }, 50);
+            });
+        }
+
+        // Generate weekly insights
+        function generateWeeklyInsights() {
+            const insights = [
+                {
+                    icon: '📈',
+                    text: 'คุณกินผักเพิ่มขึ้น 20% เมื่อเทียบกับเดือนที่แล้ว ดีมากเลย!'
+                },
+                {
+                    icon: '⚡',
+                    text: 'ระดับพลังงานจากอาหารของคุณเหมาะสมสำหรับกิจกรรมประจำวัน'
+                },
+                {
+                    icon: '🧪',
+                    text: 'ขาดวิตามิน C เล็กน้อย ลองเพิ่มผลไม้เปรี้ยวๆ ในมื้อเย็นดูนะ'
+                },
+                {
+                    icon: '💧',
+                    text: 'การดื่มน้ำของคุณดีขึ้นแล้ว แต่ยังขาดอีก 0.7 ลิตรต่อวัน'
+                },
+                {
+                    icon: '🏃‍♂️',
+                    text: 'ออกกำลังกายสม่ำเสมอขึ้น ช่วยเผาผลาญอาหารได้ดีมาก!'
+                },
+                {
+                    icon: '🥗',
+                    text: 'อัตราส่วนคาร์โบไฮเดรต โปรตีน และไขมันของคุณสมดุลดี'
+                }
+            ];
+
+            return insights.slice(0, 4); // Show 4 insights
+        }
+
+        // Simulate real-time updates
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                // Randomly update some stats slightly
+                const calorieProgress = document.querySelector('.calories-fill');
+                const currentWidth = parseInt(calorieProgress.style.width);
+                
+                if (Math.random() > 0.8) { // 20% chance to update
+                    const newWidth = Math.min(100, currentWidth + Math.random() * 2);
+                    calorieProgress.style.width = newWidth + '%';
+                    
+                    // Update text
+                    const calorieValue = Math.floor((newWidth / 100) * 1800);
+                    document.querySelector('.progress-item .progress-value').textContent = `${calorieValue} / 1,800`;
+                }
+            }, 10000); // Every 10 seconds
+        }
+
+        // Add floating animation to achievement items
+        function addAchievementAnimations() {
+            const achievements = document.querySelectorAll('.achievement-item:not(.locked)');
+            
+            achievements.forEach((item, index) => {
+                setTimeout(() => {
+                    setInterval(() => {
+                        item.style.transform = 'translateY(-3px) scale(1.02)';
+                        setTimeout(() => {
+                            item.style.transform = 'translateY(0) scale(1)';
+                        }, 1000);
+                    }, 5000 + (index * 1000));
+                }, index * 500);
+            });
+        }
+
+        // Show achievement notification
+        function showAchievementNotification() {
+            setTimeout(() => {
+                if (Math.random() > 0.7) { // 30% chance to show achievement
+                    alert('🏆 ยินดีด้วย! คุณได้รับความสำเร็จใหม่\n\n⭐ "เชฟระดับเทพ"\nคะแนนเฉลี่ยมากกว่า 8.0 คะแนน\n\n🎁 ปลดล็อกเคล็ดลับพิเศษ 3 รายการ!');
+                }
+            }, 3000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on load
+            setTimeout(() => {
+                animateStats();
+                animateProgressBars();
+                addAchievementAnimations();
+                simulateRealTimeUpdates();
+                showAchievementNotification();
+            }, 500);
+
+            // Add hover effects to food items
+            const foodItems = document.querySelectorAll('.food-item');
+            foodItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add ripple effect to profile avatar
+            const avatar = document.querySelector('.profile-avatar');
+            avatar.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '100px';
+                ripple.style.height = '100px';
+                ripple.style.marginLeft = '-50px';
+                ripple.style.marginTop = '-50px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+
+            // Add CSS animation for ripple
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+
+        // Voice greeting based on time
+        function getTimeBasedGreeting() {
+            const hour = new Date().getHours();
+            if (hour < 12) return 'สวัสดีตอนเช้า! พร้อมทำอาหารเช้าแล้วหรือยัง? 🌅';
+            if (hour < 17) return 'สวัสดีตอนบ่าย! วันนี้จะทำอะไรอร่อยๆ กันดี? 🌞';
+            return 'สวัสดีตอนเย็น! มื้อเย็นวันนี้เตรียมตัวแล้วไหม? 🌆';
+        }
+
+        // Show personalized tip
+        function showPersonalizedTip() {
+            const tips = [
+                '💡 เคล็ดลับ: ลองเพิ่มผักใบเขียวในเมนูโปรดของคุณ จะได้สารอาหารครบถ้วนมากขึ้น!',
+                '🔥 แนะนำ: ใช้กะเพราสดแทนแห้ง จะได้กลิ่นหอมและรสชาติที่เข้มข้นกว่า',
+                '⚡ เทคนิค: การผัดด้วยไฟแรงจะทำให้อาหารมีความกรุบและหอมกว่า',
+                '🥗 สุขภาพ: ลดน้ำมันลงครึ่งหนึ่ง แล้วเพิ่มน้ำเปล่าเล็กน้อยแทน จะได้รสชาติเข้มข้นเท่าเดิม',
+                '🍃 ธรรมชาติ: ใช้เครื่องเทศสดแทนผงแกง จะได้รสชาติที่แท้จริงมากขึ้น'
+            ];
+            
+            return tips[Math.floor(Math.random() * tips.length)];
+        }
+
+        // Show daily motivation
+        setTimeout(() => {
+            const greeting = getTimeBasedGreeting();
+            const tip = showPersonalizedTip();
+            
+            if (Math.random() > 0.6) { // 40% chance to show tip
+                setTimeout(() => {
+                    alert(`${greeting}\n\n${tip}`);
+                }, 2000);
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กินอะไรดี - ผู้ช่วยด้านอาหาร</title>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🍳 กินอะไรดี</h1>
+            <p>ผู้ช่วยด้านอาหารของคุณ</p>
+        </div>
+
+        <!-- Search Zone -->
+        <div class="search-zone">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="คุณอยากกินอะไร?" id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+        <!--
+            <div class="action-buttons">
+                <button class="action-btn" onclick="scanQR()">
+                    <span>📸</span>
+                    <span>ถ่ายภาพวัตถุดิบ</span>
+                </button>
+                <button class="action-btn" onclick="takePhoto()">
+                    <span>📱</span>
+                    <span>คำนวนแคล</span>
+                </button>
+                <button class="action-btn" onclick="addIngredient()">
+                    <span>✍️</span>
+                    <span>พิมพ์เพิ่ม</span>
+                </button>
+
+                <button class="action-btn" onclick="addIngredient()">
+                    <span>✍️</span>
+                    <span>พิมพ์เพิ่ม</span>
+                </button>
+            </div>-->
+        </div>
+
+        <!-- Recommended Menu -->
+        <div class="section">
+            <div class="section-title">
+                <span>🎯</span>
+                เมนูแนะนำวันนี้
+            </div>
+            <div class="recommended-menu">
+                <div class="menu-card" onclick="viewRecipe('ผัดกะเพรา')">
+                    <div class="menu-image">🍛</div>
+                    <div class="menu-info">
+                        <div class="menu-name">ผัดกะเพราหมู</div>
+                        <div class="menu-details">
+                            <span>350 แคล</span>
+                            <span>15 นาที</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" onclick="viewRecipe('ต้มยำกุ้ง')">
+                    <div class="menu-image">🍲</div>
+                    <div class="menu-info">
+                        <div class="menu-name">ต้มยำกุ้ง</div>
+                        <div class="menu-details">
+                            <span>180 แคล</span>
+                            <span>20 นาที</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" onclick="viewRecipe('ข้าวผัด')">
+                    <div class="menu-image">🍚</div>
+                    <div class="menu-info">
+                        <div class="menu-name">ข้าวผัดไข่</div>
+                        <div class="menu-details">
+                            <span>420 แคล</span>
+                            <span>10 นาที</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Ingredients -->
+        <div class="section">
+            <div class="section-title">
+                <span>🥬</span>
+                วัตถุดิบของฉัน
+            </div>
+            <div class="ingredients-preview">
+                <div class="ingredient-tags">
+                    <span class="ingredient-tag">หมูสับ</span>
+                    <span class="ingredient-tag">กะเพรา</span>
+                    <span class="ingredient-tag expiring">ไข่ไก่</span>
+                    <span class="ingredient-tag">หอมแดง</span>
+                    <span class="ingredient-tag expiring">นมสด</span>
+                </div>
+                <button class="add-ingredient-btn" onclick="addIngredient()">+ เพิ่มวัตถุดิบ</button>
+            </div>
+        </div>
+
+        <!-- Health Goals -->
+        <div class="section">
+            <div class="section-title">
+                <span>💪</span>
+                เป้าหมายสุขภาพวันนี้
+            </div>
+            <div class="health-goals">
+                <div class="progress-text">
+                    <span>แคลอรี</span>
+                    <span>650 / 1,800</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 36%"></div>
+                </div>
+
+                <div class="progress-text">
+                    <span>โปรตีน</span>
+                    <span>25g / 80g</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 31%"></div>
+                </div>
+
+                <div style="margin-top: 10px; font-size: 14px;">
+                    💡 คุณยังทานโปรตีนได้อีก 55g
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="section">
+            <div class="section-title">
+                <span>💡</span>
+                เคล็ดลับวันนี้
+            </div>
+            <div class="tips-section">
+                <div class="tip-card">
+                    <strong>💰 ประหยัดเงิน:</strong> ใช้ไข่แทนเนื้อได้นะ โปรตีนสูงและราคาถูกกว่า
+                </div>
+                <div class="tip-card">
+                    <strong>🌱 สุขภาพดี:</strong> เพิ่มผักใบเขียวในทุกมื้อ เพิ่มไฟเบอร์และวิตามิน
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="nav-item active" onclick="switchTab('home')">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">หน้าหลัก</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('ingredients')">
+                <span class="nav-icon">📦</span>
+                <span class="nav-text">วัตถุดิบ</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('recipes')">
+                <span class="nav-icon">🍽</span>
+                <span class="nav-text">เมนู</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('profile')">
+                <span class="nav-icon">👤</span>
+                <span class="nav-text">โปรไฟล์</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const query = this.value;
+                if (query.trim()) {
+                    searchFood(query);
+                }
+            }
+        });
+
+        function searchFood(query) {
+            alert(`🔍 กำลังค้นหา: "${query}"\n\nเจอ 5 เมนูที่เข้ากัน!\n• ผัดกะเพรา${query}\n• ${query}ผัดพริกแกง\n• ${query}นึ่งมะนาว\n• แกง${query}\n• ${query}ทอดกระเทียมพริกไทย`);
+        }
+
+        function scanQR() {
+            alert('📱 เปิดกล้องสแกน QR Code\n\nสแกนบาร์โค้ดบนผลิตภัณฑ์อาหารเพื่อเพิ่มวัตถุดิบอัตโนมัติ');
+        }
+
+        function takePhoto() {
+            alert('📸 เปิดกล้องถ่ายภาพ\n\nถ่ายภาพวัตถุดิบเพื่อให้ AI ช่วยระบุและเพิ่มในรายการของคุณ');
+        }
+
+        function addIngredient() {
+            const ingredient = prompt('✍️ พิมพ์ชื่อวัตถุดิบที่ต้องการเพิ่ม:');
+            if (ingredient && ingredient.trim()) {
+                alert(`✅ เพิ่ม "${ingredient}" เรียบร้อยแล้ว!\n\nระบบแนะนำเมนูที่ใช้ ${ingredient}:\n• ${ingredient}ผัดน้ำมันหอย\n• แกงจืด${ingredient}\n• ${ingredient}ทอดกระเทียมพริกไทย`);
+            }
+        }
+
+        function viewRecipe(recipeName) {
+            alert(`🍽 สูตร${recipeName}\n\n📝 วัตถุดิบ:\n• หมูสับ 200g\n• ใบกะเพรา 1 ถ้วย\n• ไข่ไก่ 1 ฟอง\n• หอมแดง 3 หัว\n• พริกชี้ฟ้า 5 เม็ด\n\n⏰ ระยะเวลา: 15 นาที\n💪 แคลอรี: 350 แคล\n\n👨‍🍳 กดดูวิธีทำแบบละเอียด`);
+        }
+
+        function switchTab(tab) {
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active class to clicked item
+            event.currentTarget.classList.add('active');
+
+            // Show different content based on tab
+            switch (tab) {
+                case 'home':
+
+                    break;
+                case 'ingredients':
+                    window.location.href = 'food.html';
+                    break;
+                case 'recipes':
+                    window.location.href = 'menu.html';
+                    break;
+                case 'profile':
+                    window.location.href = 'profile.html';
+                    break;
+            }
+            
+        }
+
+        // Auto-update progress bars animation
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 500);
+                });
+            }, 1000);
+        });
+
+        // Add floating animation to menu cards
+        setInterval(() => {
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.transform = 'translateY(-2px)';
+                    setTimeout(() => {
+                        card.style.transform = 'translateY(0px)';
+                    }, 1000);
+                }, index * 200);
+            });
+        }, 5000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Cafe - Register</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="gaming-bg"></div>
+    
+    <div class="container">
+        <!-- Register Form -->
+        <div class="desktop-window" id="registerWindow">
+            <div class="desktop-header">
+                <div class="desktop-title">Desktop - Register</div>
+                <div class="window-controls">
+                    <div class="control-btn close"></div>
+                    <div class="control-btn minimize"></div>
+                    <div class="control-btn maximize"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h2 style="color: #fff; text-align: center; margin-bottom: 2rem;">Register</h2>
+                
+                <div id="registerAlert"></div>
+
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="regEmail" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="regName" name="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="regPass" name="password" placeholder="Create a password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="regConfirmPass" name="confirm_password" placeholder="Confirm your password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Register</button>
+
+                    <div class="switch-form">
+                        Already have an account? <a href="login.html">Login here</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Alert functions
+        function showAlert(type, message, containerId) {
+            const alertContainer = document.getElementById(containerId);
+            alertContainer.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+            setTimeout(() => {
+                alertContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        // Register form submission
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('regPass').value;
+            const confirmPassword = document.getElementById('regConfirmPass').value;
+            
+            // Client-side validation
+            if (password !== confirmPassword) {
+                showAlert('error', 'รหัสผ่านไม่ตรงกัน!', 'registerAlert');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showAlert('error', 'รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร!', 'registerAlert');
+                return;
+            }
+            
+            // Check password strength
+            if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
+                showAlert('error', 'รหัสผ่านต้องมีตัวพิมพ์เล็ก ตัวพิมพ์ใหญ่ และตัวเลข', 'registerAlert');
+                return;
+            }
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = 'กำลังลงทะเบียน...';
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('register.html', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showAlert('success', result.message || 'ลงทะเบียนสำเร็จ! กำลังเปลี่ยนไปหน้าเข้าสู่ระบบ...', 'registerAlert');
+                    setTimeout(() => {
+                        window.location.href = 'login.php';
+                    }, 2000);
+                } else {
+                    showAlert('error', result.message || 'ลงทะเบียนไม่สำเร็จ กรุณาลองใหม่อีกครั้ง', 'registerAlert');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                showAlert('error', 'เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง', 'registerAlert');
+            } finally {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Add floating animation to window
+        document.addEventListener('mousemove', function(e) {
+            const window = document.querySelector('.desktop-window');
+            const rect = window.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            window.style.transform = `translate(${x * 0.01}px, ${y * 0.01}px)`;
+        });
+    </script>
+</body>
+</html>
