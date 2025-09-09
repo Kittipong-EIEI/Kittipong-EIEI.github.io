@@ -70,79 +70,9 @@
         </div>
 
         <!-- Recipe Modal -->
-        <div class="recipe-modal" id="recipeModal">
-            <div class="recipe-content">
-                <div class="recipe-header">
-                    <button class="recipe-close" onclick="closeRecipeModal()">×</button>
-                    <div class="recipe-title" id="recipeTitle">ผัดกะเพราหมูสับ</div>
-                    <div class="recipe-meta">
-                        <span id="recipeCalories">📊 350 แคล</span>
-                        <span id="recipeTime">⏰ 15 นาที</span>
-                    </div>
-                </div>
+        <a href="sol.html" target="_blank" class="recipe-card"></a>
 
-                <div class="recipe-body">
-                    <div class="recipe-section">
-                        <h3>🛒 วัตถุดิบที่ต้องใช้</h3>
-                        <div class="ingredients-list-modal" id="recipeIngredients">
-                            <!-- Dynamic ingredients list -->
-                        </div>
-                    </div>
 
-                    <div id="timerDisplay" class="timer-display" style="display: none;">
-                        ⏱️ <span id="timerText">00:00</span>
-                    </div>
-
-                    <div class="recipe-section">
-                        <h3>👨‍🍳 ขั้นตอนการทำ</h3>
-                        <div class="steps-container" id="recipeSteps">
-                            <!-- Dynamic steps -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cooking-controls">
-                    <button class="control-btn start-btn" id="startBtn" onclick="startCooking()">
-                        🚀 เริ่มทำ
-                    </button>
-                    <button class="control-btn next-btn" id="nextBtn" onclick="nextStep()" style="display: none;">
-                        ➡️ ขั้นตอนถัดไป
-                    </button>
-                    <button class="control-btn finish-btn" id="finishBtn" onclick="finishCooking()"
-                        style="display: none;">
-                        ✅ เสร็จสิ้น
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Rating Modal -->
-        <div class="rating-modal" id="ratingModal">
-            <div class="rating-content">
-                <h2 class="rating-title">🎉 ทำเสร็จแล้ว!</h2>
-                <p>ให้คะแนนเมนู "<span id="ratedRecipeName"></span>"</p>
-
-                <div class="stars-container">
-                    <span class="star" data-rating="1">⭐</span>
-                    <span class="star" data-rating="2">⭐</span>
-                    <span class="star" data-rating="3">⭐</span>
-                    <span class="star" data-rating="4">⭐</span>
-                    <span class="star" data-rating="5">⭐</span>
-                </div>
-
-                <textarea class="rating-comment" id="ratingComment"
-                    placeholder="แชร์ความคิดเห็นเกี่ยวกับเมนูนี้..."></textarea>
-
-                <div class="rating-buttons">
-                    <button class="rating-btn submit-rating" onclick="submitRating()">
-                        ส่งคะแนน
-                    </button>
-                    <button class="rating-btn cancel-rating" onclick="closeRatingModal()">
-                        ข้าม
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <!-- Camera Overlay -->
         <div class="camera-overlay" id="cameraOverlay">
@@ -185,7 +115,8 @@
             { name: '🌿 ใบกะเพราา', amount: '1 ถ้วย', expiry: '2025-09-17', daysLeft: 7 },
             { name: '🥚 ไข่ไก่', amount: '6 ฟอง', expiry: '2025-09-12', daysLeft: 2 },
             { name: '🧅 หอมแดง', amount: '200g', expiry: '2025-09-20', daysLeft: 10 },
-            { name: '🥛 นมสด', amount: '1 ลิตร', expiry: '2025-09-11', daysLeft: 1 }
+            { name: '🥛 นมสด', amount: '1 ลิตร', expiry: '2025-09-11', daysLeft: 1 },
+            { name: '🌶️ พริกแกง', amount: '1 ลิตร', expiry: '2025-09-11', daysLeft: 1 }
         ];
 
         let currentRecipe = null;
@@ -195,23 +126,9 @@
         let totalTime = 0;
 
         const recipeDatabase = {
+            
             'ผัดกะเพราหมูสับ': {
                 name: 'ผัดกะเพราหมูสับ',
-                calories: 350,
-                time: 15,
-                ingredients: ['หมูสับ', 'กะเพรา', 'ไข่ไก่', 'หอมแดง', 'กระเทียม', 'พริกแกง'],
-                steps: [
-                    { text: 'เปิดไฟปานกลาง ตั้งกะทะให้ร้อน เทน้ำมันพืชลงไป', time: 2, timer: false },
-                    { text: 'ใส่กระเทียมสับ หอมแดงสับ ผัดจนหอม', time: 2, timer: true },
-                    { text: 'ใส่หมูสับลงผัด คนให้เข้ากัน ผัดจนหมูสุก', time: 5, timer: true },
-                    { text: 'ปรุงรสด้วยน้ำปลา ซอสหอยนางรม น้ำตาลทราย', time: 1, timer: false },
-                    { text: 'ใส่ใบกะเพราลงไป ผัดให้เข้ากันจนใบกะเพราเหี่ยว', time: 2, timer: true },
-                    { text: 'เปิดไฟแรง ทอดไข่ดาวในกะทะอีกใบ', time: 3, timer: true },
-                    { text: 'จัดเสิร์ฟผัดกะเพราใส่จาน โรยด้วยไข่ดาว พร้อมข้าวสวย', time: 1, timer: false }
-                ]
-            },
-            'ไข่เจียวหอมแดง': {
-                name: 'ไข่เจียวหอมแดง',
                 calories: 180,
                 time: 8,
                 ingredients: ['ไข่ไก่', 'หอมแดง'],
@@ -400,75 +317,77 @@
         }
 
         function generateAISuggestions() {
-            const suggestions = document.getElementById('aiSuggestions');
-            suggestions.innerHTML = '';
+    const suggestions = document.getElementById('aiSuggestions');
+    suggestions.innerHTML = '';
 
-            const availableRecipes = [];
+    const availableRecipes = [];
 
-            Object.keys(recipeDatabase).forEach(recipeName => {
-                const recipe = recipeDatabase[recipeName];
-                const hasIngredients = recipe.ingredients.every(reqIngredient => {
-                    return ingredients.some(availableIng =>
-                        availableIng.name.toLowerCase().includes(reqIngredient.toLowerCase())
-                    );
-                });
+    Object.keys(recipeDatabase).forEach(recipeName => {
+        const recipe = recipeDatabase[recipeName];
+        const hasIngredients = recipe.ingredients.every(reqIngredient => {
+            return ingredients.some(availableIng =>
+                availableIng.name.toLowerCase().includes(reqIngredient.toLowerCase())
+            );
+        });
 
-                if (hasIngredients) {
-                    availableRecipes.push(recipe);
-                }
-            });
-
-            // Sort by priority (expiring ingredients first)
-            availableRecipes.sort((a, b) => {
-                const aHasExpiring = a.ingredients.some(ing =>
-                    ingredients.some(availIng =>
-                        availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
-                    )
-                );
-                const bHasExpiring = b.ingredients.some(ing =>
-                    ingredients.some(availIng =>
-                        availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
-                    )
-                );
-
-                if (aHasExpiring && !bHasExpiring) return -1;
-                if (!aHasExpiring && bHasExpiring) return 1;
-                return a.calories - b.calories;
-            });
-
-            availableRecipes.forEach(recipe => {
-                const hasExpiringIngredients = recipe.ingredients.some(ing =>
-                    ingredients.some(availIng =>
-                        availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
-                    )
-                );
-
-                const card = document.createElement('div');
-                card.className = 'recipe-card';
-                card.onclick = () => openRecipeModal(recipe);
-
-                const urgencyText = hasExpiringIngredients ? ' ' : '';
-
-                card.innerHTML = `
-                    <div class="recipe-name">${getRecipeEmoji(recipe.name)} ${recipe.name}${urgencyText}</div>
-                    <div class="recipe-info">
-                        <span>📊 ${recipe.calories} แคล</span>
-                        <span>⏰ ${recipe.time} นาที</span>
-                    </div>
-                    <div class="recipe-ingredients">ใช้: ${recipe.ingredients.join(', ')}</div>
-                `;
-                suggestions.appendChild(card);
-            });
-
-            if (availableRecipes.length === 0) {
-                suggestions.innerHTML = `
-                    <div style="text-align: center; padding: 20px; opacity: 0.8;">
-                        <div style="font-size: 32px; margin-bottom: 10px;">🤔</div>
-                        <div>เพิ่มวัตถุดิบเพื่อรับคำแนะนำเมนูจาก AI</div>
-                    </div>
-                `;
-            }
+        if (hasIngredients) {
+            availableRecipes.push(recipe);
         }
+    });
+
+    // Sort by priority (expiring ingredients first)
+    availableRecipes.sort((a, b) => {
+        const aHasExpiring = a.ingredients.some(ing =>
+            ingredients.some(availIng =>
+                availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
+            )
+        );
+        const bHasExpiring = b.ingredients.some(ing =>
+            ingredients.some(availIng =>
+                availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
+            )
+        );
+
+        if (aHasExpiring && !bHasExpiring) return -1;
+        if (!aHasExpiring && bHasExpiring) return 1;
+        return a.calories - b.calories;
+    });
+
+    availableRecipes.forEach(recipe => {
+        const hasExpiringIngredients = recipe.ingredients.some(ing =>
+            ingredients.some(availIng =>
+                availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
+            )
+        );
+
+        const card = document.createElement('a');
+        card.className = 'recipe-card';
+        card.href = 'sol.html';   // เปลี่ยนเป็น URL ที่ต้องการ
+        card.target = '_blank';   // เปิดในแท็บใหม่ (ถ้าต้องการ)
+
+        const urgencyText = hasExpiringIngredients ? ' ' : '';
+
+        card.innerHTML = `
+            <div class="recipe-name">${getRecipeEmoji(recipe.name)} ${recipe.name}${urgencyText}</div>
+            <div class="recipe-info">
+                <span>📊 ${recipe.calories} แคล</span>
+                <span>⏰ ${recipe.time} นาที</span>
+            </div>
+            <div class="recipe-ingredients">ใช้: ${recipe.ingredients.join(', ')}</div>
+        `;
+        suggestions.appendChild(card);
+    });
+
+    if (availableRecipes.length === 0) {
+        suggestions.innerHTML = `
+            <div style="text-align: center; padding: 20px; opacity: 0.8;">
+                <div style="font-size: 32px; margin-bottom: 10px;">🤔</div>
+                <div>เพิ่มวัตถุดิบเพื่อรับคำแนะนำเมนูจาก AI</div>
+            </div>
+        `;
+    }
+}
+
 
         function getRecipeEmoji(recipeName) {
             const emojiMap = {
