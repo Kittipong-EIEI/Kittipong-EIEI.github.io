@@ -63,16 +63,12 @@
                     <span>🤖</span>
                     AI แนะนำเมนูจากวัตถุดิบที่มี
                 </div>
+
                 <div class="recipe-suggestions" id="aiSuggestions">
-                    <!-- Dynamic suggestions will be loaded here -->
+                    <!-- Recipe cards with images will be generated here -->
                 </div>
             </div>
         </div>
-
-        <!-- Recipe Modal -->
-        <a href="sol.html" target="_blank" class="recipe-card"></a>
-
-
 
         <!-- Camera Overlay -->
         <div class="camera-overlay" id="cameraOverlay">
@@ -112,46 +108,42 @@
         // Global variables
         let ingredients = [
             { name: '🐷 หมูสับ', amount: '500g', expiry: '2025-09-15', daysLeft: 3 },
-            { name: '🌿 ใบกะเพราา', amount: '1 ถ้วย', expiry: '2025-09-17', daysLeft: 7 },
+            { name: '🌿 ใบกะเพรา', amount: '1 ถ้วย', expiry: '2025-09-17', daysLeft: 7 },
             { name: '🥚 ไข่ไก่', amount: '6 ฟอง', expiry: '2025-09-12', daysLeft: 2 },
             { name: '🧅 หอมแดง', amount: '200g', expiry: '2025-09-20', daysLeft: 10 },
             { name: '🥛 นมสด', amount: '1 ลิตร', expiry: '2025-09-11', daysLeft: 1 },
             { name: '🌶️ พริกแกง', amount: '1 ลิตร', expiry: '2025-09-11', daysLeft: 1 }
         ];
 
-        let currentRecipe = null;
-        let currentStep = 0;
-        let cookingStarted = false;
-        let timer = null;
-        let totalTime = 0;
-
+        // Recipe database with images
         const recipeDatabase = {
-            
             'ผัดกะเพราหมูสับ': {
                 name: 'ผัดกะเพราหมูสับ',
+                calories: 350,
+                time: 15,
+                ingredients: ['หมูสับ', 'กะเพรา', 'หอมแดง', 'พริก'],
+                image: 'food1.jpg'
+            },
+            'ไข่เจียวหอมแดง': {
+                name: 'ไข่เจียวหอมแดง',
                 calories: 180,
                 time: 8,
                 ingredients: ['ไข่ไก่', 'หอมแดง'],
-                steps: [
-                    { text: 'ตีไข่ในชามใหญ่ให้เข้ากัน เติมเกลือนิดหน่อย', time: 1, timer: false },
-                    { text: 'หั่นหอมแดงเป็นชิ้นบาง ๆ ใส่ลงในไข่ตี', time: 2, timer: false },
-                    { text: 'ตั้งกะทะด้วยไฟปานกลาง เทน้ำมันพืชให้ร้อน', time: 1, timer: true },
-                    { text: 'เทไข่ลงกะทะ ปล่อยให้แข็งด้านล่างก่อน', time: 2, timer: true },
-                    { text: 'พลิกไข่เจียวอีกด้านหนึ่ง ทอดจนเหลือง', time: 2, timer: true }
-                ]
+                image: 'food4.jpg'
             },
-            'หมูสับผัดหอมแดง': {
-                name: 'หมูสับผัดหอมแดง',
+            'นมสดผัดซอส': {
+                name: 'นมสดผัดซอส',
                 calories: 280,
                 time: 12,
-                ingredients: ['หมูสับ', 'หอมแดง'],
-                steps: [
-                    { text: 'หั่นหอมแดงเป็นชิ้น ตั้งกะทะให้ร้อน', time: 2, timer: false },
-                    { text: 'ใส่น้ำมัน ผัดหอมแดงจนใส หอม', time: 3, timer: true },
-                    { text: 'ใส่หมูสับ ผัดจนสุก เนื้อแห้ง', time: 5, timer: true },
-                    { text: 'ปรุงรสด้วยซีอิ๊วขาว น้ำปลา น้ำตาล', time: 1, timer: false },
-                    { text: 'ผัดให้เข้ากัน ชิมรส จัดเสิร์ฟ', time: 1, timer: false }
-                ]
+                ingredients: ['นมสด', 'หอมแดง'],
+                image: 'food5.jpg'
+            },
+            'ซุปไข่หวาน': {
+                name: 'ซุปไข่หวาน',
+                calories: 150,
+                time: 10,
+                ingredients: ['ไข่ไก่', 'นมสด'],
+                image: 'food6.jpg'
             }
         };
 
@@ -169,47 +161,7 @@
         });
 
         function setupEventListeners() {
-            // Rating stars
-            document.querySelectorAll('.star').forEach(star => {
-                star.addEventListener('click', function () {
-                    const rating = parseInt(this.dataset.rating);
-                    updateStarRating(rating);
-                });
-
-                star.addEventListener('mouseover', function () {
-                    const rating = parseInt(this.dataset.rating);
-                    highlightStars(rating);
-                });
-            });
-
-            document.querySelector('.stars-container').addEventListener('mouseleave', function () {
-                const currentRating = getCurrentRating();
-                highlightStars(currentRating);
-            });
-        }
-
-        function updateStarRating(rating) {
-            document.querySelectorAll('.star').forEach((star, index) => {
-                if (index < rating) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
-        }
-
-        function highlightStars(rating) {
-            document.querySelectorAll('.star').forEach((star, index) => {
-                if (index < rating) {
-                    star.style.color = '#ffd700';
-                } else {
-                    star.style.color = '#ddd';
-                }
-            });
-        }
-
-        function getCurrentRating() {
-            return document.querySelectorAll('.star.active').length;
+            // Add any necessary event listeners
         }
 
         // Ingredient management functions
@@ -224,7 +176,7 @@
             const expiry = document.getElementById('ingredientExpiry').value;
 
             if (!name || !amount || !expiry) {
-                alert('❌ กรุณากรอกข้อมูลให้ครบถ้วน');
+                alert('⚠ กรุณากรอกข้อมูลให้ครบถ้วน');
                 return;
             }
 
@@ -317,297 +269,82 @@
         }
 
         function generateAISuggestions() {
-    const suggestions = document.getElementById('aiSuggestions');
-    suggestions.innerHTML = '';
+            const suggestions = document.getElementById('aiSuggestions');
+            suggestions.innerHTML = '';
 
-    const availableRecipes = [];
+            const availableRecipes = [];
 
-    Object.keys(recipeDatabase).forEach(recipeName => {
-        const recipe = recipeDatabase[recipeName];
-        const hasIngredients = recipe.ingredients.every(reqIngredient => {
-            return ingredients.some(availableIng =>
-                availableIng.name.toLowerCase().includes(reqIngredient.toLowerCase())
-            );
-        });
+            Object.keys(recipeDatabase).forEach(recipeName => {
+                const recipe = recipeDatabase[recipeName];
+                const hasIngredients = recipe.ingredients.every(reqIngredient => {
+                    return ingredients.some(availableIng =>
+                        availableIng.name.toLowerCase().includes(reqIngredient.toLowerCase())
+                    );
+                });
 
-        if (hasIngredients) {
-            availableRecipes.push(recipe);
-        }
-    });
-
-    // Sort by priority (expiring ingredients first)
-    availableRecipes.sort((a, b) => {
-        const aHasExpiring = a.ingredients.some(ing =>
-            ingredients.some(availIng =>
-                availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
-            )
-        );
-        const bHasExpiring = b.ingredients.some(ing =>
-            ingredients.some(availIng =>
-                availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
-            )
-        );
-
-        if (aHasExpiring && !bHasExpiring) return -1;
-        if (!aHasExpiring && bHasExpiring) return 1;
-        return a.calories - b.calories;
-    });
-
-    availableRecipes.forEach(recipe => {
-        const hasExpiringIngredients = recipe.ingredients.some(ing =>
-            ingredients.some(availIng =>
-                availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
-            )
-        );
-
-        const card = document.createElement('a');
-        card.className = 'recipe-card';
-        card.href = 'sol.html';   // เปลี่ยนเป็น URL ที่ต้องการ
-        card.target = '_blank';   // เปิดในแท็บใหม่ (ถ้าต้องการ)
-
-        const urgencyText = hasExpiringIngredients ? ' ' : '';
-
-        card.innerHTML = `
-            <div class="recipe-name">${getRecipeEmoji(recipe.name)} ${recipe.name}${urgencyText}</div>
-            <div class="recipe-info">
-                <span>📊 ${recipe.calories} แคล</span>
-                <span>⏰ ${recipe.time} นาที</span>
-            </div>
-            <div class="recipe-ingredients">ใช้: ${recipe.ingredients.join(', ')}</div>
-        `;
-        suggestions.appendChild(card);
-    });
-
-    if (availableRecipes.length === 0) {
-        suggestions.innerHTML = `
-            <div style="text-align: center; padding: 20px; opacity: 0.8;">
-                <div style="font-size: 32px; margin-bottom: 10px;">🤔</div>
-                <div>เพิ่มวัตถุดิบเพื่อรับคำแนะนำเมนูจาก AI</div>
-            </div>
-        `;
-    }
-}
-
-
-        function getRecipeEmoji(recipeName) {
-            const emojiMap = {
-                'ผัดกะเพรา': '🍛',
-                'ไข่เจียว': '🍳',
-                'ไข่ดาว': '🍳',
-                'ไข่ต้ม': '🥚',
-                'ลาบ': '🥗',
-                'นมสด': '🥛',
-                'พุดดิ้ง': '🍮',
-                'สลัด': '🥗',
-                'ซุป': '🍲',
-                'แกง': '🍛'
-            };
-
-            for (const [key, emoji] of Object.entries(emojiMap)) {
-                if (recipeName.includes(key)) {
-                    return emoji;
+                if (hasIngredients) {
+                    availableRecipes.push(recipe);
                 }
-            }
-            return '🍽️';
-        }
+            });
 
-        // Recipe modal functions
-        function openRecipeModal(recipe) {
-            currentRecipe = recipe;
-            currentStep = 0;
-            cookingStarted = false;
-
-            document.getElementById('recipeTitle').textContent = recipe.name;
-            document.getElementById('recipeCalories').textContent = `📊 ${recipe.calories} แคล`;
-            document.getElementById('recipeTime').textContent = `⏰ ${recipe.time} นาที`;
-
-            displayRecipeIngredients(recipe);
-            displayRecipeSteps(recipe);
-            resetCookingControls();
-
-            document.getElementById('recipeModal').classList.add('active');
-        }
-
-        function closeRecipeModal() {
-            document.getElementById('recipeModal').classList.remove('active');
-            stopTimer();
-            resetCookingControls();
-            currentRecipe = null;
-            currentStep = 0;
-            cookingStarted = false;
-        }
-
-        function displayRecipeIngredients(recipe) {
-            const container = document.getElementById('recipeIngredients');
-            container.innerHTML = '';
-
-            recipe.ingredients.forEach(ingredient => {
-                const available = ingredients.some(ing =>
-                    ing.name.toLowerCase().includes(ingredient.toLowerCase())
+            // Sort by priority (expiring ingredients first)
+            availableRecipes.sort((a, b) => {
+                const aHasExpiring = a.ingredients.some(ing =>
+                    ingredients.some(availIng =>
+                        availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
+                    )
+                );
+                const bHasExpiring = b.ingredients.some(ing =>
+                    ingredients.some(availIng =>
+                        availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
+                    )
                 );
 
-                const item = document.createElement('div');
-                item.className = `ingredient-item ${available ? 'ingredient-available' : 'ingredient-missing'}`;
-                item.innerHTML = `
-                    <span>${ingredient}</span>
-                    <span>${available ? '✅ มี' : '❌ ไม่มี'}</span>
+                if (aHasExpiring && !bHasExpiring) return -1;
+                if (!aHasExpiring && bHasExpiring) return 1;
+                return a.calories - b.calories;
+            });
+
+            availableRecipes.forEach(recipe => {
+                const hasExpiringIngredients = recipe.ingredients.some(ing =>
+                    ingredients.some(availIng =>
+                        availIng.name.toLowerCase().includes(ing.toLowerCase()) && availIng.daysLeft <= 2
+                    )
+                );
+
+                const card = document.createElement('a');  // ✅ แก้จาก cconst → const
+                card.className = 'recipe-card';
+                card.href = 'sol.html';       // ลิงก์ไป sol.html
+                card.target = '_blank';       // เปิดในแท็บใหม่ (ลบได้ถ้าอยากเปิดในแท็บเดียว)
+
+                const urgencyBadge = hasExpiringIngredients
+                    ? '<span style="background:#ff4444;color:white;font-size:10px;padding:2px 6px;border-radius:10px;margin-left:4px;">⚡ ด่วน</span>'
+                    : '';
+
+                card.innerHTML = `
+        <img src="${recipe.image}" alt="${recipe.name}" class="recipe-photo" onError="this.style.display='none'">
+        <div class="recipe-info">
+            <div class="recipe-name">${recipe.name}${urgencyBadge}</div>
+            <div class="recipe-details">
+                <span>🔥 ${recipe.calories} แคล</span>
+                <span>⏱️ ${recipe.time} นาที</span>
+            </div>
+            <div class="recipe-ingredients">ใช้: ${recipe.ingredients.join(', ')}</div>
+        </div>
+    `; // ✅ ปิด backtick ให้เรียบร้อย
+
+                suggestions.appendChild(card);
+            });
+
+
+            if (availableRecipes.length === 0) {
+                suggestions.innerHTML = `
+                    <div style="text-align: center; padding: 20px; opacity: 0.8; grid-column: 1 / -1;">
+                        <div style="font-size: 32px; margin-bottom: 10px;">🤔</div>
+                        <div>เพิ่มวัตถุดิบเพื่อรับคำแนะนำเมนูจาก AI</div>
+                    </div>
                 `;
-                container.appendChild(item);
-            });
-        }
-
-        function displayRecipeSteps(recipe) {
-            const container = document.getElementById('recipeSteps');
-            container.innerHTML = '';
-
-            recipe.steps.forEach((step, index) => {
-                const stepElement = document.createElement('div');
-                stepElement.className = 'step-item';
-                stepElement.innerHTML = `
-                    <span class="step-number">${index + 1}</span>
-                    <div class="step-text">${step.text} ${step.timer ? `(⏱️ ${step.time} นาที)` : ''}</div>
-                `;
-                container.appendChild(stepElement);
-            });
-        }
-
-        function resetCookingControls() {
-            document.getElementById('startBtn').style.display = 'inline-block';
-            document.getElementById('nextBtn').style.display = 'none';
-            document.getElementById('finishBtn').style.display = 'none';
-            document.getElementById('timerDisplay').style.display = 'none';
-        }
-
-        // Cooking process functions
-        function startCooking() {
-            cookingStarted = true;
-            currentStep = 0;
-            totalTime = 0;
-
-            document.getElementById('startBtn').style.display = 'none';
-            document.getElementById('nextBtn').style.display = 'inline-block';
-
-            highlightCurrentStep();
-            startStepTimer();
-
-            alert('🚀 เริ่มทำอาหารแล้ว! ทำตามขั้นตอนไปทีละขั้น');
-        }
-
-        function nextStep() {
-            const steps = document.querySelectorAll('.step-item');
-
-            // Mark current step as completed
-            steps[currentStep].classList.add('completed');
-            steps[currentStep].classList.remove('active');
-
-            currentStep++;
-
-            if (currentStep >= currentRecipe.steps.length) {
-                document.getElementById('nextBtn').style.display = 'none';
-                document.getElementById('finishBtn').style.display = 'inline-block';
-                stopTimer();
-                return;
             }
-
-            highlightCurrentStep();
-            startStepTimer();
-        }
-
-        function finishCooking() {
-            stopTimer();
-            closeRecipeModal();
-
-            // Show rating modal
-            document.getElementById('ratedRecipeName').textContent = currentRecipe.name;
-            document.getElementById('ratingModal').classList.add('active');
-
-            // Reset star rating
-            updateStarRating(0);
-            document.getElementById('ratingComment').value = '';
-        }
-
-        function highlightCurrentStep() {
-            const steps = document.querySelectorAll('.step-item');
-
-            steps.forEach((step, index) => {
-                step.classList.remove('active');
-                if (index === currentStep) {
-                    step.classList.add('active');
-                    step.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            });
-        }
-
-        function startStepTimer() {
-            const currentStepData = currentRecipe.steps[currentStep];
-
-            if (currentStepData.timer && currentStepData.time > 0) {
-                let timeLeft = currentStepData.time * 60; // Convert to seconds
-
-                document.getElementById('timerDisplay').style.display = 'block';
-
-                timer = setInterval(() => {
-                    const minutes = Math.floor(timeLeft / 60);
-                    const seconds = timeLeft % 60;
-
-                    document.getElementById('timerText').textContent =
-                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-                    if (timeLeft <= 0) {
-                        stopTimer();
-                        alert(`⏰ ขั้นตอน "${currentStepData.text}" เสร็จแล้ว!`);
-                        return;
-                    }
-
-                    timeLeft--;
-                }, 1000);
-            } else {
-                document.getElementById('timerDisplay').style.display = 'none';
-            }
-        }
-
-        function stopTimer() {
-            if (timer) {
-                clearInterval(timer);
-                timer = null;
-            }
-            document.getElementById('timerDisplay').style.display = 'none';
-        }
-
-        // Rating functions
-        function submitRating() {
-            const rating = getCurrentRating();
-            const comment = document.getElementById('ratingComment').value.trim();
-
-            if (rating === 0) {
-                alert('กรุณาให้คะแนนก่อนส่ง');
-                return;
-            }
-
-            // Here you would typically send the rating to a server
-            const ratingData = {
-                recipe: currentRecipe.name,
-                rating: rating,
-                comment: comment,
-                timestamp: new Date().toISOString()
-            };
-
-            console.log('Rating submitted:', ratingData);
-
-            let message = `🎉 ขอบคุณสำหรับคะแนน!\n\n`;
-            message += `📊 เมนู: ${currentRecipe.name}\n`;
-            message += `⭐ คะแนน: ${rating}/5\n`;
-            if (comment) {
-                message += `💬 ความคิดเห็น: ${comment}\n`;
-            }
-            message += `\n🤖 AI จะนำข้อมูลนี้ไปปรับปรุงคำแนะนำในครั้งถัดไป`;
-
-            alert(message);
-            closeRatingModal();
-        }
-
-        function closeRatingModal() {
-            document.getElementById('ratingModal').classList.remove('active');
         }
 
         // Camera functions
@@ -643,23 +380,9 @@
                 const expiredItems = expiring.map(ing => ing.name).join(', ');
 
                 setTimeout(() => {
-                    showWarningBanner(expiredItems);
+                    alert(`⚠️ วัตถุดิบใกล้หมดอายุ: ${expiredItems}`);
                 }, 2000);
             }
-        }
-
-        function showWarningBanner(expiredItems) {
-            document.getElementById('warningItems').textContent = expiredItems;
-            document.getElementById('warningBanner').classList.add('show');
-
-            // Auto hide after 10 seconds
-            setTimeout(() => {
-                closeWarningBanner();
-            }, 10000);
-        }
-
-        function closeWarningBanner() {
-            document.getElementById('warningBanner').classList.remove('show');
         }
 
         // Navigation
@@ -669,6 +392,33 @@
             });
 
             event.currentTarget.classList.add('active');
+            switch (tab) {
+                case 'home':
+                    alert('🏠 กำลังไปหน้าหลัก...');
+                    break;
+                case 'ingredients':
+                    // Already on ingredients page
+                    break;
+                case 'recipes':
+                    alert('🍽 กำลังไปหน้าเมนู...');
+                    break;
+                case 'profile':
+                    alert('👤 กำลังไปหน้าโปรไฟล์...');
+                    break;
+            }
+        }
+
+
+        function switchTab(tab) {
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active class to clicked item
+            event.currentTarget.classList.add('active');
+
+            // Show different content based on tab
             switch (tab) {
                 case 'home':
                     window.location.href = 'home.html';
@@ -683,6 +433,7 @@
                     window.location.href = 'profile.html';
                     break;
             }
+
         }
     </script>
 </body>

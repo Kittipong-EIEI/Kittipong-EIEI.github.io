@@ -23,69 +23,52 @@
                 <input type="text" class="search-input" placeholder="คุณอยากกินอะไร?" id="searchInput">
                 <span class="search-icon">🔍</span>
             </div>
-        <!--
-            <div class="action-buttons">
-                <button class="action-btn" onclick="scanQR()">
-                    <span>📸</span>
-                    <span>ถ่ายภาพวัตถุดิบ</span>
-                </button>
-                <button class="action-btn" onclick="takePhoto()">
-                    <span>📱</span>
-                    <span>คำนวนแคล</span>
-                </button>
-                <button class="action-btn" onclick="addIngredient()">
-                    <span>✍️</span>
-                    <span>พิมพ์เพิ่ม</span>
-                </button>
 
-                <button class="action-btn" onclick="addIngredient()">
-                    <span>✍️</span>
-                    <span>พิมพ์เพิ่ม</span>
-                </button>
-            </div>-->
         </div>
 
         <!-- Recommended Menu -->
+        <!-- เมนูแนะนำวันนี้ -->
         <div class="section">
             <div class="section-title">
                 <span>🎯</span>
                 เมนูแนะนำวันนี้
             </div>
+
             <div class="recommended-menu">
                 <div class="menu-card" onclick="viewRecipe('ผัดกะเพรา')">
-                    <div class="menu-image">🍛</div>
+                    <img src="food1.jpg" alt="ผัดกะเพราหมู" class="menu-photo">
                     <div class="menu-info">
-                        <div class="menu-name">ผัดกะเพราหมู</div>
+                        <h3 class="menu-name">ผัดกะเพราหมู</h3>
                         <div class="menu-details">
-                            <span>350 แคล</span>
-                            <span>15 นาที</span>
+                            <span>350 แคล</span><span>•</span><span>15 นาที</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="menu-card" onclick="viewRecipe('ต้มยำกุ้ง')">
-                    <div class="menu-image">🍲</div>
+                    <img src="food2.jpg" alt="ต้มยำกุ้ง" class="menu-photo">
                     <div class="menu-info">
-                        <div class="menu-name">ต้มยำกุ้ง</div>
+                        <h3 class="menu-name">ต้มยำกุ้ง</h3>
                         <div class="menu-details">
-                            <span>180 แคล</span>
-                            <span>20 นาที</span>
+                            <span>180 แคล</span><span>•</span><span>20 นาที</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="menu-card" onclick="viewRecipe('ข้าวผัด')">
-                    <div class="menu-image">🍚</div>
+                    <img src="food3.jpg" alt="ข้าวผัดไข่" class="menu-photo">
                     <div class="menu-info">
-                        <div class="menu-name">ข้าวผัดไข่</div>
+                        <h3 class="menu-name">ข้าวผัดไข่</h3>
                         <div class="menu-details">
-                            <span>420 แคล</span>
-                            <span>10 นาที</span>
+                            <span>420 แคล</span><span>•</span><span>10 นาที</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
 
         <!-- My Ingredients -->
         <div class="section">
@@ -229,7 +212,7 @@
                     window.location.href = 'profile.html';
                     break;
             }
-            
+
         }
 
         // Auto-update progress bars animation
@@ -258,6 +241,16 @@
                 }, index * 200);
             });
         }, 5000);
+
+        function viewRecipe(name) {
+            // ถ้าอยากเก็บชื่อเมนูไปใช้ในหน้า sol.html ด้วย สามารถส่งเป็น query string
+            // window.location.href = `sol.html?menu=${encodeURIComponent(name)}`;
+
+            // หรือถ้าไม่ต้องส่งพารามิเตอร์ แค่ไปหน้า sol.html ตรง ๆ
+            window.location.href = 'sol.html';
+        }
+
+
     </script>
 </body>
 

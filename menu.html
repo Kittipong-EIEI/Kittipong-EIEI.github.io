@@ -42,8 +42,7 @@
             <div class="recipes-grid" id="recipesGrid">
                 <!-- Savory Recipes -->
                 <div class="recipe-card" data-category="savory" onclick="openRecipeModal('ผัดกะเพราหมูสับ')">
-                    <div class="recipe-image">
-                        🍛
+                    <div class="recipe-image" style="background-image: url('food1.jpg');">
                         <div class="recipe-difficulty">ง่าย</div>
                     </div>
                     <div class="recipe-info">
@@ -67,8 +66,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="savory" onclick="openRecipeModal('ต้มยำกุ้ง')">
-                    <div class="recipe-image">
-                        🍲
+                    <div class="recipe-image" style="background-image: url('food2.jpg');">
                         <div class="recipe-difficulty">ปานกลาง</div>
                     </div>
                     <div class="recipe-info">
@@ -92,8 +90,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="savory" onclick="openRecipeModal('ข้าวผัดไข่')">
-                    <div class="recipe-image">
-                        🍚
+                    <div class="recipe-image" style="background-image: url('food3.jpg');">
                         <div class="recipe-difficulty">ง่าย</div>
                     </div>
                     <div class="recipe-info">
@@ -116,8 +113,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="savory" onclick="openRecipeModal('ผัดไทย')">
-                    <div class="recipe-image">
-                        🍜
+                    <div class="recipe-image" style="background-image: url('food11.jpg');">
                         <div class="recipe-difficulty">ปานกลาง</div>
                     </div>
                     <div class="recipe-info">
@@ -140,14 +136,13 @@
                 </div>
 
                 <!-- Sweet Recipes -->
-                <div class="recipe-card" data-category="sweet" onclick="openRecipeModal('ขนมปังฝรั่งเศสโทสต์')">
-                    <div class="recipe-image">
-                        🍞
+                <div class="recipe-card" data-category="sweet" onclick="openRecipeModal('ขนมปังกรั่งเศสโทสต์')">
+                    <div class="recipe-image" style="background-image: url('food22.jpg');">
                         <div class="recipe-difficulty">ง่าย</div>
                     </div>
                     <div class="recipe-info">
                         <div class="recipe-header">
-                            <div class="recipe-name">ฝรั่งเศสโทสต์</div>
+                            <div class="recipe-name">กรั่งเศสโทสต์</div>
                             <div class="recipe-rating">⭐ 4.5</div>
                         </div>
                         <div class="recipe-stats">
@@ -165,8 +160,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="sweet" onclick="openRecipeModal('พุดดิ้งไข่')">
-                    <div class="recipe-image">
-                        🍮
+                    <div class="recipe-image" style="background-image: url('food33.jpg');">
                         <div class="recipe-difficulty">ปานกลาง</div>
                     </div>
                     <div class="recipe-info">
@@ -189,8 +183,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="sweet" onclick="openRecipeModal('บราวนี่')">
-                    <div class="recipe-image">
-                        🍫
+                    <div class="recipe-image" style="background-image: url('food44.jpg');">
                         <div class="recipe-difficulty">ยาก</div>
                     </div>
                     <div class="recipe-info">
@@ -213,8 +206,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="sweet" onclick="openRecipeModal('ไอศครีมโฮมเมด')">
-                    <div class="recipe-image">
-                        🍦
+                    <div class="recipe-image" style="background-image: url('food55.jpg');">
                         <div class="recipe-difficulty">ปานกลาง</div>
                     </div>
                     <div class="recipe-info">
@@ -238,8 +230,7 @@
 
                 <!-- Drinks -->
                 <div class="recipe-card" data-category="drink" onclick="openRecipeModal('สมูทตี้ผลไม้')">
-                    <div class="recipe-image">
-                        🥤
+                    <div class="recipe-image" style="background-image: url('food66.jpg');">
                         <div class="recipe-difficulty">ง่าย</div>
                     </div>
                     <div class="recipe-info">
@@ -263,8 +254,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="drink" onclick="openRecipeModal('ชาไทย')">
-                    <div class="recipe-image">
-                        🧋
+                    <div class="recipe-image" style="background-image: url('food77.jpg');">
                         <div class="recipe-difficulty">ง่าย</div>
                     </div>
                     <div class="recipe-info">
@@ -289,8 +279,7 @@
 
                 <!-- Snacks -->
                 <div class="recipe-card" data-category="snack" onclick="openRecipeModal('ทอดมันกุ้ง')">
-                    <div class="recipe-image">
-                        🍤
+                    <div class="recipe-image" style="background-image: url('food88.jpg');">
                         <div class="recipe-difficulty">ปานกลาง</div>
                     </div>
                     <div class="recipe-info">
@@ -313,8 +302,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="snack" onclick="openRecipeModal('ป๊อปคอร์น')">
-                    <div class="recipe-image">
-                        🍿
+                    <div class="recipe-image" style="background-image: url('food99.jpg');">
                         <div class="recipe-difficulty">ง่าย</div>
                     </div>
                     <div class="recipe-info">
@@ -368,35 +356,17 @@
                     </div>
 
                     <div class="modal-section">
-                        <button class="toggle-steps" onclick="toggleCookingSteps()">
-                            📝 แสดงวิธีทำ (คลิกเพื่อดู)
+                        <button class="show-recipe-btn" onclick="goToRecipePage()">
+                            📖 แสดงวิธีการทำ
                         </button>
-                        <div class="cooking-steps-section" id="cookingStepsSection">
-                            <div class="modal-section-title">
-                                <span>👨‍🍳</span>
-                                วิธีทำ
-                            </div>
-                            <ol class="cooking-steps" id="modalSteps">
-                                <li>เตรียมวัตถุดิบ โขลกพริกกับกระเทียมให้ละเอียด</li>
-                                <li>ตั้งกระทะให้ร้อน ใส่น้ำมันลงไป</li>
-                                <li>ใส่พริกกระเทียมที่โขลกแล้วลงผัด</li>
-                                <li>ใส่หมูสับลงผัดจนสุก</li>
-                                <li>ใส่ใบกะเพราลงผัด ปรุงรสด้วยซีอิ๊ว</li>
-                                <li>ตีไข่ใส่กระทะข้างๆ ทำไข่ดาว</li>
-                                <li>เสิร์ฟพร้อมข้าวสวยร้อนๆ และไข่ดาว</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <div class="modal-section">
-                        <div class="modal-section-title">
-                            <span>💡</span>
-                            เคล็ดลับ
-                        </div>
                         <div style="background: #fff3cd; padding: 15px; border-radius: 10px; font-size: 14px;">
+                            <div class="modal-section-title">
+                                <span>💡</span>
+                                เคล็ดลับ
+                            </div>
                             • ใช้ไฟแรงตลอดเพื่อให้ได้กลิ่นหอม<br>
                             • ใส่ใบกะเพราตอนสุดท้ายเพื่อไม่ให้เหี่ยว<br>
-                            • เพิ่มน้ำตาลปีบเล็กน้อยเพื่อความกลมกล่อม
+                            • เพิ่มน้ำตาลปี๊บเล็กน้อยเพื่อความกลมกล่อม
                         </div>
                     </div>
                 </div>
@@ -428,7 +398,6 @@
         // Recipe database with full details
         const recipeData = {
             'ผัดกะเพราหมูสับ': {
-                emoji: '🍛',
                 category: 'savory',
                 rating: 4.8,
                 calories: 350,
@@ -442,22 +411,12 @@
                     { name: 'พริกชี้ฟ้าแดง 5 เม็ด', available: false },
                     { name: 'กระเทียม 3 กลีบ', available: false },
                     { name: 'ซีอิ๊วขาว 2 ช้อนโต๊ะ', available: false },
-                    { name: 'น้ำตาลปีบ 1 ช้อนชา', available: false },
+                    { name: 'น้ำตาลปี๊บ 1 ช้อนชา', available: false },
                     { name: 'น้ำมันพืช 3 ช้อนโต๊ะ', available: false }
                 ],
-                steps: [
-                    'เตรียมวัตถุดิบ โขลกพริกกับกระเทียมให้ละเอียด',
-                    'ตั้งกระทะให้ร้อน ใส่น้ำมันลงไป',
-                    'ใส่พริกกระเทียมที่โขลกแล้วลงผัด',
-                    'ใส่หมูสับลงผัดจนสุก',
-                    'ใส่ใบกะเพราลงผัด ปรุงรสด้วยซีอิ๊ว',
-                    'ตีไข่ใส่กระทะข้างๆ ทำไข่ดาว',
-                    'เสิร์ฟพร้อมข้าวสวยร้อนๆ และไข่ดาว'
-                ],
-                tips: '• ใช้ไฟแรงตลอดเพื่อให้ได้กลิ่นหอม\n• ใส่ใบกะเพราตอนสุดท้ายเพื่อไม่ให้เหี่ยว\n• เพิ่มน้ำตาลปีบเล็กน้อยเพื่อความกลมกล่อม'
+                tips: '• ใช้ไฟแรงตลอดเพื่อให้ได้กลิ่นหอม\n• ใส่ใบกะเพราตอนสุดท้ายเพื่อไม่ให้เหี่ยว\n• เพิ่มน้ำตาลปี๊บเล็กน้อยเพื่อความกลมกล่อม'
             },
             'ต้มยำกุ้ง': {
-                emoji: '🍲',
                 category: 'savory',
                 rating: 4.9,
                 calories: 180,
@@ -474,19 +433,9 @@
                     { name: 'ข่า 30 กรัม', available: false },
                     { name: 'น้ำปลา 3 ช้อนโต๊ะ', available: false }
                 ],
-                steps: [
-                    'เตรียมน้ำซุปโดยต้มตะไคร้ ข่า ใบมะกรูด',
-                    'ใส่กุ้งลงต้มจนสุก',
-                    'เพิ่มเห็ดฟาง มะเขือเทศ ข้าโพดอ่อน',
-                    'ปรุงรสด้วยน้ำปลา น้ำมะนาว',
-                    'ใส่พริกขี้หนูตามชอบ',
-                    'ต้มอีก 2-3 นาที แล้วยกลง',
-                    'โรยผักชีและเสิร์ฟร้อนๆ'
-                ],
                 tips: '• ใส่กุ้งตอนสุดท้ายเพื่อไม่ให้แก่\n• รสชาติต้องเปรี้ยว เผ็ด เค็ม\n• ใส่ใบมะกรูดฉีกๆ เพื่อให้หอม'
             },
             'ข้าวผัดไข่': {
-                emoji: '🍚',
                 category: 'savory',
                 rating: 4.6,
                 calories: 420,
@@ -502,97 +451,7 @@
                     { name: 'ต้นหอม 2 ต้น', available: false },
                     { name: 'ซีอิ๊วขาว 2 ช้อนโต๊ะ', available: false }
                 ],
-                steps: [
-                    'ตีไข่ใส่กระทะ คนให้แตก',
-                    'ใส่หอมใหญ่สับลงผัด',
-                    'ใส่ข้าวสุกลงผัดให้เข้ากัน',
-                    'เพิ่มแครอท ถั่วลันเตา',
-                    'ปรุงรสด้วยซีอิ๊วขาว',
-                    'โรยต้นหอมซอย',
-                    'ผัดอีก 1-2 นาที แล้วเสิร์ฟ'
-                ],
                 tips: '• ใช้ข้าวที่เย็นแล้วจะดีกว่า\n• ไข่ต้องสุกก่อนใส่ข้าว\n• ใส่ผักตามชอบได้'
-            },
-            'ขนมปังฝรั่งเศสโทสต์': {
-                emoji: '🍞',
-                category: 'sweet',
-                rating: 4.5,
-                calories: 280,
-                time: 10,
-                servings: 1,
-                difficulty: 'ง่าย',
-                ingredients: [
-                    { name: 'ขนมปัง 2 แผ่น', available: false },
-                    { name: 'ไข่ไก่ 2 ฟอง', available: true },
-                    { name: 'นมสด 1/4 ถ้วย', available: true },
-                    { name: 'น้ำตาล 1 ช้อนโต๊ะ', available: false },
-                    { name: 'เนยสด 2 ช้อนโต๊ะ', available: false },
-                    { name: 'ผงอบเชย 1/4 ช้อนชา', available: false },
-                    { name: 'วานิลลา 1/2 ช้อนชา', available: false }
-                ],
-                steps: [
-                    'ผสมไข่ นมสด น้ำตาล วานิลลา ผงอบเชย',
-                    'จุ่มขนมปังในส่วนผสม',
-                    'ตั้งกระทะใส่เนยให้ละลาย',
-                    'นำขนมปังที่จุ่มแล้วลงทอด',
-                    'ทอดแต่ละด้าน 2-3 นาที จนเหลือง',
-                    'เสิร์ฟพร้อมน้ำผึ้งหรือผลไม้',
-                    'โรยผงน้ำตาลตกแต่ง'
-                ],
-                tips: '• ใช้ขนมปังหนาๆ จะดีกว่า\n• ไฟปานกลางไม่ให้ไหม้\n• จุ่มขนมปังให้ซึมดี'
-            },
-            'พุดดิ้งไข่': {
-                emoji: '🍮',
-                category: 'sweet',
-                rating: 4.8,
-                calories: 220,
-                time: 45,
-                servings: 4,
-                difficulty: 'ปานกลาง',
-                ingredients: [
-                    { name: 'ไข่ไก่ 4 ฟอง', available: true },
-                    { name: 'นมสด 2 ถ้วย', available: true },
-                    { name: 'น้ำตาลทราย 1/2 ถ้วย', available: false },
-                    { name: 'น้ำตาลปี๊บ 1/4 ถ้วย', available: false },
-                    { name: 'วานิลลา 1 ช้อนชา', available: false }
-                ],
-                steps: [
-                    'ทำคาราเมลโดยละลายน้ำตาลปี๊บ',
-                    'เทคาราเมลใส่พิมพ์',
-                    'ผสมไข่ นมสด น้ำตาล วานิลลา',
-                    'กรองส่วนผสมให้เนียน',
-                    'เทใส่พิมพ์ที่มีคาราเมล',
-                    'นึ่งไฟอ่อน 30 นาที',
-                    'พักให้เย็นแล้วแกะออกจากพิมพ์'
-                ],
-                tips: '• คาราเมลต้องเป็นสีทองแก่\n• กรองส่วนผสมเพื่อความเนียน\n• นึ่งด้วยไฟอ่อนๆ'
-            },
-            'สมูทตี้ผลไม้': {
-                emoji: '🥤',
-                category: 'drink',
-                rating: 4.6,
-                calories: 180,
-                time: 5,
-                servings: 1,
-                difficulty: 'ง่าย',
-                ingredients: [
-                    { name: 'กล้วย 1 ผล', available: false },
-                    { name: 'สตรอเบอรี่ 1/2 ถ้วย', available: false },
-                    { name: 'โยเกิร์ต 1/2 ถ้วย', available: false },
-                    { name: 'น้ำผึ้ง 1 ช้อนโต๊ะ', available: false },
-                    { name: 'น้ำแข็ง 1/2 ถ้วย', available: false },
-                    { name: 'นมอัลมอนด์ 1/4 ถ้วย', available: false }
-                ],
-                steps: [
-                    'เตรียมผลไม้ให้สด',
-                    'ใส่กล้วย สตรอเบอรี่ในเครื่องปั่น',
-                    'เพิ่มโยเกิร์ต น้ำผึ้ง',
-                    'ใส่น้ำแข็งและนมอัลมอนด์',
-                    'ปั่นให้เนียนประมาณ 2 นาที',
-                    'ชิมรสและเพิ่มน้ำผึ้งหากต้องการ',
-                    'เสิร์ฟในแก้วเย็นๆ'
-                ],
-                tips: '• ใช้กล้วยที่สุกดีจะหวานธรรมชาติ\n• ปั่นให้เนียนเพื่อความนุ่ม\n• ดื่มทันทีเพื่อความสด'
             }
         };
 
@@ -645,45 +504,41 @@
         function openRecipeModal(recipeName) {
             const recipe = recipeData[recipeName];
             if (!recipe) {
-                alert('ไม่พบข้อมูลสูตรอาหาร');
-                return;
+                // Show basic modal even if recipe details not found
+                document.getElementById('modalRecipeName').textContent = recipeName;
+                document.getElementById('modalRecipeStats').innerHTML = `
+                    <span>📊 - แคล</span>
+                    <span>⏰ - นาที</span>
+                    <span>👥 - คน</span>
+                    <span>⭐ -</span>
+                `;
+                
+                const ingredientsList = document.getElementById('modalIngredients');
+                ingredientsList.innerHTML = '<li>ข้อมูลวัตถุดิบกำลังอัปเดต...</li>';
+            } else {
+                // Update modal content
+                document.getElementById('modalRecipeName').textContent = recipeName;
+                document.getElementById('modalRecipeStats').innerHTML = `
+                    <span>📊 ${recipe.calories} แคล</span>
+                    <span>⏰ ${recipe.time} นาที</span>
+                    <span>👥 ${recipe.servings} คน</span>
+                    <span>⭐ ${recipe.rating}</span>
+                `;
+
+                // Update ingredients list
+                const ingredientsList = document.getElementById('modalIngredients');
+                ingredientsList.innerHTML = '';
+                recipe.ingredients.forEach(ingredient => {
+                    const li = document.createElement('li');
+                    li.textContent = ingredient.name;
+                    li.className = ingredient.available ? 'ingredient-have' : 'ingredient-missing';
+                    ingredientsList.appendChild(li);
+                });
             }
-
-            // Update modal content
-            document.getElementById('modalRecipeName').textContent = `${recipe.emoji} ${recipeName}`;
-            document.getElementById('modalRecipeStats').innerHTML = `
-                <span>📊 ${recipe.calories} แคล</span>
-                <span>⏰ ${recipe.time} นาที</span>
-                <span>👥 ${recipe.servings} คน</span>
-                <span>⭐ ${recipe.rating}</span>
-            `;
-
-            // Update ingredients list
-            const ingredientsList = document.getElementById('modalIngredients');
-            ingredientsList.innerHTML = '';
-            recipe.ingredients.forEach(ingredient => {
-                const li = document.createElement('li');
-                li.textContent = ingredient.name;
-                li.className = ingredient.available ? 'ingredient-have' : 'ingredient-missing';
-                ingredientsList.appendChild(li);
-            });
-
-            // Update cooking steps
-            const stepsList = document.getElementById('modalSteps');
-            stepsList.innerHTML = '';
-            recipe.steps.forEach(step => {
-                const li = document.createElement('li');
-                li.textContent = step;
-                stepsList.appendChild(li);
-            });
 
             // Show modal
             document.getElementById('recipeModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
-
-            // Reset steps visibility
-            document.getElementById('cookingStepsSection').classList.remove('show');
-            document.querySelector('.toggle-steps').textContent = '📝 แสดงวิธีทำ (คลิกเพื่อดู)';
         }
 
         function closeRecipeModal() {
@@ -691,17 +546,9 @@
             document.body.style.overflow = 'auto';
         }
 
-        function toggleCookingSteps() {
-            const stepsSection = document.getElementById('cookingStepsSection');
-            const toggleBtn = document.querySelector('.toggle-steps');
-            
-            if (stepsSection.classList.contains('show')) {
-                stepsSection.classList.remove('show');
-                toggleBtn.textContent = '📝 แสดงวิธีทำ (คลิกเพื่อดู)';
-            } else {
-                stepsSection.classList.add('show');
-                toggleBtn.textContent = '📝 ซ่อนวิธีทำ';
-            }
+        function goToRecipePage() {
+            // Redirect to sol.html when clicking "แสดงวิธีการทำ"
+            window.location.href = 'sol.html';
         }
 
         function switchTab(tab) {
